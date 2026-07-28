@@ -29,6 +29,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from sgp4.api import jday
 from skyfield.api import load
 
@@ -223,6 +224,7 @@ app = FastAPI(
 @app.get("/", include_in_schema=False)
 def dashboard():
     return FileResponse(STATIC_DIR / "index.html")
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 @app.websocket("/ws")

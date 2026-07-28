@@ -176,7 +176,7 @@ let siteLat = null, siteLon = null, mask = 10;
 // functional without them -- the graticule alone is enough to read the tracks.
 (async function loadCoast() {
   try {
-    const res = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json");
+    const res = await fetch("/static/land-110m.json");
     const topo = await res.json();
     const obj = topo.objects.land;
     const arcs = topo.arcs, tr = topo.transform;
@@ -192,11 +192,16 @@ let siteLat = null, siteLon = null, mask = 10;
       return i < 0 ? pts.slice().reverse() : pts;
     });
     const g = document.getElementById("coast");
-    const polys = obj.type === "MultiPolygon" ? obj.arcs : [obj.arcs];
-    polys.forEach(poly => poly.forEach(r => {
-      const pts = ring(r).map(([lon, lat]) => projX(lon) + "," + projY(lat)).join(" ");
-      g.appendChild(el("polygon", {class:"coast", points:pts}));
-    }));
+    // "land" may be a single Polygon/MultiPolygon, or a GeometryCollection of
+    // many landmass geometries -- normalise to a flat list of ring-arrays.
+    const geoms = obj.type === "GeometryCollection" ? obj.geometries : [obj];
+    geoms.forEach(geom => {
+      const polys = geom.type === "MultiPolygon" ? geom.arcs : [geom.arcs];
+      polys.forEach(poly => poly.forEach(r => {
+        const pts = ring(r).map(([lon, lat]) => projX(lon) + "," + projY(lat)).join(" ");
+        g.appendChild(el("polygon", {class:"coast", points:pts}));
+      }));
+    });
   } catch (e) {
     console.warn("coastlines unavailable, graticule only", e);
   }
