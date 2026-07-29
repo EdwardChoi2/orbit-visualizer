@@ -1,0 +1,5620 @@
+{
+  "project": "Prometheus - Lunar PNT Constellation Trade Study",
+  "generated_for": "Raspberry Pi orbit visualizer",
+  "constants": {
+    "mu_moon_km3_s2": 4902.8,
+    "R_moon_km": 1737.4,
+    "epoch": "01 Jan 2026 00:00:00.000 UTC",
+    "frame": "MoonMJ2000Eq",
+    "lunar_sidereal_day_days": 27.321661,
+    "elevation_mask_deg": 7.0
+  },
+  "evaluation_sites": {
+    "Shackleton": {
+      "lat": -89.9,
+      "lon": 0.0
+    },
+    "Mare_Tranquillitatis": {
+      "lat": 0.68,
+      "lon": 23.43
+    },
+    "Tsiolkovskiy": {
+      "lat": -20.35,
+      "lon": 128.97
+    }
+  },
+  "configs": [
+    {
+      "config_id": "LLO-4-27",
+      "family": "LLO",
+      "n_sats": 4,
+      "n_planes": 1,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 1
+      },
+      "verified": true,
+      "note": "Single-plane 4-sat baseline (Chapter 3).",
+      "satellites": [
+        {
+          "name": "LLO-4-27_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 1.395044,
+            "VZ_kms": 0.710811
+          }
+        },
+        {
+          "name": "LLO-4-27_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-4-27_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -1.395044,
+            "VZ_kms": -0.710811
+          }
+        },
+        {
+          "name": "LLO-4-27_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1782.013,
+            "Z_km": -907.981,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-6-27",
+      "family": "LLO",
+      "n_sats": 6,
+      "n_planes": 1,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 1
+      },
+      "verified": true,
+      "note": "Single-plane 6-sat baseline.",
+      "satellites": [
+        {
+          "name": "LLO-6-27_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 1.395044,
+            "VZ_kms": 0.710811
+          }
+        },
+        {
+          "name": "LLO-6-27_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 60
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1000.0,
+            "Y_km": 1543.2686,
+            "Z_km": 786.3346,
+            "VX_kms": -1.355931,
+            "VY_kms": 0.697522,
+            "VZ_kms": 0.355405
+          }
+        },
+        {
+          "name": "LLO-6-27_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1000.0,
+            "Y_km": 1543.2686,
+            "Z_km": 786.3346,
+            "VX_kms": -1.355931,
+            "VY_kms": -0.697522,
+            "VZ_kms": -0.355405
+          }
+        },
+        {
+          "name": "LLO-6-27_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -1.395044,
+            "VZ_kms": -0.710811
+          }
+        },
+        {
+          "name": "LLO-6-27_P1_S5",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1000.0,
+            "Y_km": -1543.2686,
+            "Z_km": -786.3346,
+            "VX_kms": 1.355931,
+            "VY_kms": -0.697522,
+            "VZ_kms": -0.355405
+          }
+        },
+        {
+          "name": "LLO-6-27_P1_S6",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 300
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1000.0,
+            "Y_km": -1543.2686,
+            "Z_km": -786.3346,
+            "VX_kms": 1.355931,
+            "VY_kms": 0.697522,
+            "VZ_kms": 0.355405
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-8-27",
+      "family": "LLO",
+      "n_sats": 8,
+      "n_planes": 1,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 1
+      },
+      "verified": true,
+      "note": "8-sat single-plane inclination sweep (Chapter 3).",
+      "satellites": [
+        {
+          "name": "LLO-8-27_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 1.395044,
+            "VZ_kms": 0.710811
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 45
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": 1260.0735,
+            "Z_km": 642.0395,
+            "VX_kms": -1.107113,
+            "VY_kms": 0.986445,
+            "VZ_kms": 0.502619
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 135
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": 1260.0735,
+            "Z_km": 642.0395,
+            "VX_kms": -1.107113,
+            "VY_kms": -0.986445,
+            "VZ_kms": -0.502619
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S5",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -1.395044,
+            "VZ_kms": -0.710811
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S6",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 225
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": -1260.0735,
+            "Z_km": -642.0395,
+            "VX_kms": 1.107113,
+            "VY_kms": -0.986445,
+            "VZ_kms": -0.502619
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S7",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1782.013,
+            "Z_km": -907.981,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-8-27_P1_S8",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 315
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": -1260.0735,
+            "Z_km": -642.0395,
+            "VX_kms": 1.107113,
+            "VY_kms": 0.986445,
+            "VZ_kms": 0.502619
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-8-60",
+      "family": "LLO",
+      "n_sats": 8,
+      "n_planes": 1,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 60,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 1
+      },
+      "verified": true,
+      "note": "8-sat single-plane inclination sweep (Chapter 3).",
+      "satellites": [
+        {
+          "name": "LLO-8-60_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 0.782847,
+            "VZ_kms": 1.355931
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 45
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": 707.1068,
+            "Z_km": 1224.7449,
+            "VX_kms": -1.107113,
+            "VY_kms": 0.553557,
+            "VZ_kms": 0.958788
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1000.0,
+            "Z_km": 1732.0508,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 135
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": 707.1068,
+            "Z_km": 1224.7449,
+            "VX_kms": -1.107113,
+            "VY_kms": -0.553557,
+            "VZ_kms": -0.958788
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S5",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.782847,
+            "VZ_kms": -1.355931
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S6",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 225
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": -707.1068,
+            "Z_km": -1224.7449,
+            "VX_kms": 1.107113,
+            "VY_kms": -0.553557,
+            "VZ_kms": -0.958788
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S7",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1000.0,
+            "Z_km": -1732.0508,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-8-60_P1_S8",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 315
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": -707.1068,
+            "Z_km": -1224.7449,
+            "VX_kms": 1.107113,
+            "VY_kms": 0.553557,
+            "VZ_kms": 0.958788
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-8-90",
+      "family": "LLO",
+      "n_sats": 8,
+      "n_planes": 1,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 90,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 1
+      },
+      "verified": true,
+      "note": "8-sat single-plane inclination sweep (Chapter 3).",
+      "satellites": [
+        {
+          "name": "LLO-8-90_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 45
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": 0.0,
+            "Z_km": 1414.2136,
+            "VX_kms": -1.107113,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.107113
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 135
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": 0.0,
+            "Z_km": 1414.2136,
+            "VX_kms": -1.107113,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.107113
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S5",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S6",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 225
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": -0.0,
+            "Z_km": -1414.2136,
+            "VX_kms": 1.107113,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.107113
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S7",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-8-90_P1_S8",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 315
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": -0.0,
+            "Z_km": -1414.2136,
+            "VX_kms": 1.107113,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.107113
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-MP-8-90",
+      "family": "LLO",
+      "n_sats": 8,
+      "n_planes": 2,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 90,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "2-plane polar, RAAN 0/90. From LLO_MP_8_90 GMAT script.",
+      "satellites": [
+        {
+          "name": "LLO-MP-8-90_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2000.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -0.0,
+            "VY_kms": -1.565695,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2000.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-MP-8-90_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 0.0,
+            "VY_kms": 1.565695,
+            "VZ_kms": -0.0
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-3P-12-90",
+      "family": "LLO",
+      "n_sats": 12,
+      "n_planes": 3,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 90,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "3-plane polar, RAAN 0/60/120. Polar layer candidate for hybrid.",
+      "satellites": [
+        {
+          "name": "LLO-3P-12-90_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 60,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1000.0,
+            "Y_km": 1732.0508,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 60,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -0.782847,
+            "VY_kms": -1.355931,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 60,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1000.0,
+            "Y_km": -1732.0508,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 60,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 0.782847,
+            "VY_kms": 1.355931,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 120,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1000.0,
+            "Y_km": 1732.0508,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 120,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": 0.782847,
+            "VY_kms": -1.355931,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 120,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1000.0,
+            "Y_km": -1732.0508,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-3P-12-90_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 120,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": -0.782847,
+            "VY_kms": 1.355931,
+            "VZ_kms": -0.0
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "LLO-4P-16-90",
+      "family": "LLO",
+      "n_sats": 16,
+      "n_planes": 4,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.0,
+        "INC_deg": 90,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 262.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "4-plane polar 16-sat. Result: 0% availability all sites (period-limited).",
+      "satellites": [
+        {
+          "name": "LLO-4P-16-90_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -1.565695,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2000.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 0,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 1.565695,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 45,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": 1414.2136,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 45,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -1.107113,
+            "VY_kms": -1.107113,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 45,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": -1414.2136,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 45,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 1.107113,
+            "VY_kms": 1.107113,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2000.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": 0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": -0.0,
+            "VY_kms": -1.565695,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2000.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 90,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": 0.0,
+            "VY_kms": 1.565695,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 135,
+            "AOP_deg": 0,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1414.2136,
+            "Y_km": 1414.2136,
+            "Z_km": 0.0,
+            "VX_kms": -0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": 1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 135,
+            "AOP_deg": 0,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": 0.0,
+            "Z_km": 2000.0,
+            "VX_kms": 1.107113,
+            "VY_kms": -1.107113,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 135,
+            "AOP_deg": 0,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1414.2136,
+            "Y_km": -1414.2136,
+            "Z_km": 0.0,
+            "VX_kms": 0.0,
+            "VY_kms": -0.0,
+            "VZ_kms": -1.565695
+          }
+        },
+        {
+          "name": "LLO-4P-16-90_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.0,
+            "INC_deg": 90,
+            "RAAN_deg": 135,
+            "AOP_deg": 0,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": -0.0,
+            "Z_km": -2000.0,
+            "VX_kms": -1.107113,
+            "VY_kms": 1.107113,
+            "VZ_kms": -0.0
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F1-8",
+      "family": "FELO",
+      "n_sats": 8,
+      "n_planes": 2,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.1,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 62.6,
+        "apoapsis_alt_km": 462.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "2-plane e=0.10 baseline.",
+      "satellites": [
+        {
+          "name": "FELO-F1-8_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1603.8117,
+            "Z_km": 817.1829,
+            "VX_kms": -1.730941,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F1-8_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1980.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.157358,
+            "VY_kms": -1.402072,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F1-8_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1960.2144,
+            "Z_km": -998.7791,
+            "VX_kms": 1.416224,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F1-8_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1980.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.157358,
+            "VY_kms": 1.402072,
+            "VZ_kms": 0.714391
+          }
+        },
+        {
+          "name": "FELO-F1-8_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1603.8117,
+            "Y_km": 0.0,
+            "Z_km": 817.1829,
+            "VX_kms": -0.0,
+            "VY_kms": -1.730941,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F1-8_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1980.0,
+            "Z_km": 0.0,
+            "VX_kms": 1.402072,
+            "VY_kms": -0.157358,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F1-8_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1960.2144,
+            "Y_km": -0.0,
+            "Z_km": -998.7791,
+            "VX_kms": 0.0,
+            "VY_kms": 1.416224,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F1-8_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1980.0,
+            "Z_km": -0.0,
+            "VX_kms": -1.402072,
+            "VY_kms": -0.157358,
+            "VZ_kms": 0.714391
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F3-8",
+      "family": "FELO",
+      "n_sats": 8,
+      "n_planes": 2,
+      "shared": {
+        "SMA_km": 2500,
+        "ECC": 0.2,
+        "INC_deg": 27,
+        "period_hr": 3.1158,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 1262.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "2-plane e=0.20 (eccentricity effect).",
+      "satellites": [
+        {
+          "name": "FELO-F3-8_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F3-8_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F3-8_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F3-8_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F3-8_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1782.013,
+            "Y_km": 0.0,
+            "Z_km": 907.981,
+            "VX_kms": -0.0,
+            "VY_kms": -1.715133,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F3-8_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2400.0,
+            "Z_km": 0.0,
+            "VX_kms": 1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F3-8_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2673.0196,
+            "Y_km": -0.0,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.0,
+            "VY_kms": 1.143422,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F3-8_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2400.0,
+            "Z_km": -0.0,
+            "VX_kms": -1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": 0.648878
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F5-8",
+      "family": "FELO",
+      "n_sats": 8,
+      "n_planes": 2,
+      "shared": {
+        "SMA_km": 2500,
+        "ECC": 0.2,
+        "INC_deg": 60,
+        "period_hr": 3.1158,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 1262.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "2-plane e=0.20 INC=60 (partial Shackleton).",
+      "satellites": [
+        {
+          "name": "FELO-F5-8_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1000.0,
+            "Z_km": 1732.0508,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F5-8_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -0.714639,
+            "VZ_kms": -1.23779
+          }
+        },
+        {
+          "name": "FELO-F5-8_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1500.0,
+            "Z_km": -2598.0762,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F5-8_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 0.714639,
+            "VZ_kms": 1.23779
+          }
+        },
+        {
+          "name": "FELO-F5-8_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1000.0,
+            "Y_km": 0.0,
+            "Z_km": 1732.0508,
+            "VX_kms": -0.0,
+            "VY_kms": -1.715133,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F5-8_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2400.0,
+            "Z_km": 0.0,
+            "VX_kms": 0.714639,
+            "VY_kms": -0.285855,
+            "VZ_kms": -1.23779
+          }
+        },
+        {
+          "name": "FELO-F5-8_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1500.0,
+            "Y_km": -0.0,
+            "Z_km": -2598.0762,
+            "VX_kms": 0.0,
+            "VY_kms": 1.143422,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F5-8_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 60,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2400.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.714639,
+            "VY_kms": -0.285855,
+            "VZ_kms": 1.23779
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F6-12",
+      "family": "FELO",
+      "n_sats": 12,
+      "n_planes": 3,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.1,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 62.6,
+        "apoapsis_alt_km": 462.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "3-plane aligned e=0.10.",
+      "satellites": [
+        {
+          "name": "FELO-F6-12_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1603.8117,
+            "Z_km": 817.1829,
+            "VX_kms": -1.730941,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1980.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.157358,
+            "VY_kms": -1.402072,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F6-12_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -1960.2144,
+            "Z_km": -998.7791,
+            "VX_kms": 1.416224,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1980.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.157358,
+            "VY_kms": 1.402072,
+            "VZ_kms": 0.714391
+          }
+        },
+        {
+          "name": "FELO-F6-12_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1388.9417,
+            "Y_km": 801.9059,
+            "Z_km": 817.1829,
+            "VX_kms": -0.86547,
+            "VY_kms": -1.499039,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -990.0,
+            "Y_km": -1714.7303,
+            "Z_km": 0.0,
+            "VX_kms": 1.135551,
+            "VY_kms": -0.837312,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F6-12_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.5954,
+            "Y_km": -980.1072,
+            "Z_km": -998.7791,
+            "VX_kms": 0.708112,
+            "VY_kms": 1.226486,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 990.0,
+            "Y_km": 1714.7303,
+            "Z_km": -0.0,
+            "VX_kms": -1.292909,
+            "VY_kms": 0.56476,
+            "VZ_kms": 0.714391
+          }
+        },
+        {
+          "name": "FELO-F6-12_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1388.9417,
+            "Y_km": -801.9059,
+            "Z_km": 817.1829,
+            "VX_kms": 0.86547,
+            "VY_kms": -1.499039,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 990.0,
+            "Y_km": -1714.7303,
+            "Z_km": 0.0,
+            "VX_kms": 1.292909,
+            "VY_kms": 0.56476,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F6-12_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.5954,
+            "Y_km": 980.1072,
+            "Z_km": -998.7791,
+            "VX_kms": -0.708112,
+            "VY_kms": 1.226486,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F6-12_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -990.0,
+            "Y_km": 1714.7303,
+            "Z_km": -0.0,
+            "VX_kms": -1.135551,
+            "VY_kms": -0.837312,
+            "VZ_kms": 0.714391
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F7-12",
+      "family": "FELO",
+      "n_sats": 12,
+      "n_planes": 3,
+      "shared": {
+        "SMA_km": 2500,
+        "ECC": 0.2,
+        "INC_deg": 27,
+        "period_hr": 3.1158,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 1262.6,
+        "simulation_duration_days": 28
+      },
+      "verified": true,
+      "note": "3-plane aligned e=0.20 (F7/F7c same geometry).",
+      "satellites": [
+        {
+          "name": "FELO-F7-12_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7-12_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F7-12_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1543.2686,
+            "Y_km": 891.0065,
+            "Z_km": 907.981,
+            "VX_kms": -0.857566,
+            "VY_kms": -1.485348,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1200.0,
+            "Y_km": -2078.461,
+            "Z_km": 0.0,
+            "VX_kms": 0.959952,
+            "VY_kms": -0.884306,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7-12_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2314.9029,
+            "Y_km": -1336.5098,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.571711,
+            "VY_kms": 0.990232,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 60,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1200.0,
+            "Y_km": 2078.461,
+            "Z_km": -0.0,
+            "VX_kms": -1.245807,
+            "VY_kms": 0.38919,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F7-12_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1543.2686,
+            "Y_km": -891.0065,
+            "Z_km": 907.981,
+            "VX_kms": 0.857566,
+            "VY_kms": -1.485348,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1200.0,
+            "Y_km": -2078.461,
+            "Z_km": 0.0,
+            "VX_kms": 1.245807,
+            "VY_kms": 0.38919,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7-12_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2314.9029,
+            "Y_km": 1336.5098,
+            "Z_km": -1361.9715,
+            "VX_kms": -0.571711,
+            "VY_kms": 0.990232,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7-12_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 120,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1200.0,
+            "Y_km": 2078.461,
+            "Z_km": -0.0,
+            "VX_kms": -0.959952,
+            "VY_kms": -0.884306,
+            "VZ_kms": 0.648878
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F8-12",
+      "family": "FELO",
+      "n_sats": 12,
+      "n_planes": 4,
+      "shared": {
+        "SMA_km": 2000,
+        "ECC": 0.1,
+        "INC_deg": 27,
+        "period_hr": 2.2295,
+        "periapsis_alt_km": 62.6,
+        "apoapsis_alt_km": 462.6,
+        "simulation_duration_days": 14
+      },
+      "verified": true,
+      "note": "4-plane Walker 12/4/1, +30 deg per-plane offset. Walker underperforms aligned.",
+      "satellites": [
+        {
+          "name": "FELO-F8-12_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1603.8117,
+            "Z_km": 817.1829,
+            "VX_kms": -1.730941,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F8-12_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1804.9793,
+            "Y_km": -928.5226,
+            "Z_km": -473.1059,
+            "VX_kms": 0.629433,
+            "VY_kms": -1.21423,
+            "VZ_kms": -0.618681
+          }
+        },
+        {
+          "name": "FELO-F8-12_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1804.9793,
+            "Y_km": -928.5226,
+            "Z_km": -473.1059,
+            "VX_kms": 0.629433,
+            "VY_kms": 1.21423,
+            "VZ_kms": 0.618681
+          }
+        },
+        {
+          "name": "FELO-F8-12_P2_S4",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 30
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1638.4821,
+            "Y_km": 349.9968,
+            "Z_km": 716.4269,
+            "VX_kms": -0.57918,
+            "VY_kms": -1.570595,
+            "VZ_kms": -0.357196
+          }
+        },
+        {
+          "name": "FELO-F8-12_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 150
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 416.3657,
+            "Y_km": -1949.183,
+            "Z_km": -852.281,
+            "VX_kms": 1.348057,
+            "VY_kms": 0.356642,
+            "VZ_kms": -0.357196
+          }
+        },
+        {
+          "name": "FELO-F8-12_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1400.0714,
+            "Y_km": 1400.0714,
+            "Z_km": -0.0,
+            "VX_kms": -1.102684,
+            "VY_kms": 0.880146,
+            "VZ_kms": 0.714391
+          }
+        },
+        {
+          "name": "FELO-F8-12_P3_S7",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 60
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -840.0919,
+            "Y_km": -1633.0765,
+            "Z_km": 428.0482,
+            "VX_kms": 1.21423,
+            "VY_kms": -0.944149,
+            "VZ_kms": -0.618681
+          }
+        },
+        {
+          "name": "FELO-F8-12_P3_S8",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1960.2144,
+            "Y_km": -0.0,
+            "Z_km": -998.7791,
+            "VX_kms": 0.0,
+            "VY_kms": 1.416224,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F8-12_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 300
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -840.0919,
+            "Y_km": 1633.0765,
+            "Z_km": 428.0482,
+            "VX_kms": -1.21423,
+            "VY_kms": -0.944149,
+            "VZ_kms": 0.618681
+          }
+        },
+        {
+          "name": "FELO-F8-12_P4_S10",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1400.0714,
+            "Y_km": -1400.0714,
+            "Z_km": 0.0,
+            "VX_kms": 1.102684,
+            "VY_kms": 0.880146,
+            "VZ_kms": -0.714391
+          }
+        },
+        {
+          "name": "FELO-F8-12_P4_S11",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 210
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 416.3657,
+            "Y_km": 1949.183,
+            "Z_km": -852.281,
+            "VX_kms": -1.348057,
+            "VY_kms": 0.356642,
+            "VZ_kms": 0.357196
+          }
+        },
+        {
+          "name": "FELO-F8-12_P4_S12",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2000,
+            "ECC": 0.1,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 330
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1638.4821,
+            "Y_km": -349.9968,
+            "Z_km": 716.4269,
+            "VX_kms": 0.57918,
+            "VY_kms": -1.570595,
+            "VZ_kms": 0.357196
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "FELO-F7d-16",
+      "family": "FELO",
+      "n_sats": 16,
+      "n_planes": 4,
+      "shared": {
+        "SMA_km": 2500,
+        "ECC": 0.2,
+        "INC_deg": 27,
+        "period_hr": 3.1158,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 1262.6,
+        "simulation_duration_days": 28
+      },
+      "verified": true,
+      "note": "4-plane aligned e=0.20, 16 sats. Definitive FELO result. FELO layer of OPT-D.",
+      "satellites": [
+        {
+          "name": "FELO-F7d-16_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1260.0735,
+            "Y_km": 1260.0735,
+            "Z_km": 907.981,
+            "VX_kms": -1.212782,
+            "VY_kms": -1.212782,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1697.0563,
+            "Y_km": -1697.0563,
+            "Z_km": 0.0,
+            "VX_kms": 0.698367,
+            "VY_kms": -1.102627,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1890.1103,
+            "Y_km": -1890.1103,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.808521,
+            "VY_kms": 0.808521,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.0563,
+            "Y_km": 1697.0563,
+            "Z_km": -0.0,
+            "VX_kms": -1.102627,
+            "VY_kms": 0.698367,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1782.013,
+            "Y_km": 0.0,
+            "Z_km": 907.981,
+            "VX_kms": -0.0,
+            "VY_kms": -1.715133,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2400.0,
+            "Z_km": 0.0,
+            "VX_kms": 1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2673.0196,
+            "Y_km": -0.0,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.0,
+            "VY_kms": 1.143422,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2400.0,
+            "Z_km": -0.0,
+            "VX_kms": -1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1260.0735,
+            "Y_km": -1260.0735,
+            "Z_km": 907.981,
+            "VX_kms": 1.212782,
+            "VY_kms": -1.212782,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.0563,
+            "Y_km": -1697.0563,
+            "Z_km": 0.0,
+            "VX_kms": 1.102627,
+            "VY_kms": 0.698367,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1890.1103,
+            "Y_km": 1890.1103,
+            "Z_km": -1361.9715,
+            "VX_kms": -0.808521,
+            "VY_kms": 0.808521,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "FELO-F7d-16_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1697.0563,
+            "Y_km": 1697.0563,
+            "Z_km": -0.0,
+            "VX_kms": -0.698367,
+            "VY_kms": -1.102627,
+            "VZ_kms": 0.648878
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "HELO-4P-16",
+      "family": "HELO",
+      "n_sats": 16,
+      "n_planes": 4,
+      "shared": {
+        "SMA_km": 6541.4,
+        "ECC": 0.6,
+        "INC_deg": 62.94,
+        "period_hr": 13.1875,
+        "periapsis_alt_km": 879.2,
+        "apoapsis_alt_km": 8728.8,
+        "simulation_duration_days": 28
+      },
+      "verified": true,
+      "note": "4-plane, 4 sats/plane. Standalone 100/88.4/97.5. HELO layer of OPT-B.",
+      "satellites": [
+        {
+          "name": "HELO-4P-16_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.5937,
+            "Y_km": 1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": -1.731477,
+            "VY_kms": -0.000179,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-16_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4186.4959,
+            "Y_km": -0.4321,
+            "Z_km": -0.8459,
+            "VX_kms": -0.649058,
+            "VY_kms": -0.492373,
+            "VZ_kms": -0.963839
+          }
+        },
+        {
+          "name": "HELO-4P-16_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2.3747,
+            "Y_km": -4761.3364,
+            "Z_km": -9320.5069,
+            "VX_kms": 0.432869,
+            "VY_kms": 4.5e-05,
+            "VZ_kms": 8.7e-05
+          }
+        },
+        {
+          "name": "HELO-4P-16_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4186.4959,
+            "Y_km": 0.4321,
+            "Z_km": 0.8459,
+            "VX_kms": -0.649549,
+            "VY_kms": 0.492239,
+            "VZ_kms": 0.963577
+          }
+        },
+        {
+          "name": "HELO-4P-16_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1190.3341,
+            "Y_km": -0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": 0.000179,
+            "VY_kms": -1.731477,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-16_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.4321,
+            "Y_km": -4186.4959,
+            "Z_km": -0.8459,
+            "VX_kms": 0.492373,
+            "VY_kms": -0.649058,
+            "VZ_kms": -0.963839
+          }
+        },
+        {
+          "name": "HELO-4P-16_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4761.3364,
+            "Y_km": 2.3747,
+            "Z_km": -9320.5069,
+            "VX_kms": -4.5e-05,
+            "VY_kms": 0.432869,
+            "VZ_kms": 8.7e-05
+          }
+        },
+        {
+          "name": "HELO-4P-16_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.4321,
+            "Y_km": 4186.4959,
+            "Z_km": 0.8459,
+            "VX_kms": -0.492239,
+            "VY_kms": -0.649549,
+            "VZ_kms": 0.963577
+          }
+        },
+        {
+          "name": "HELO-4P-16_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.5937,
+            "Y_km": -1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": 1.731477,
+            "VY_kms": 0.000179,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-16_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4186.4959,
+            "Y_km": 0.4321,
+            "Z_km": -0.8459,
+            "VX_kms": 0.649058,
+            "VY_kms": 0.492373,
+            "VZ_kms": -0.963839
+          }
+        },
+        {
+          "name": "HELO-4P-16_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2.3747,
+            "Y_km": 4761.3364,
+            "Z_km": -9320.5069,
+            "VX_kms": -0.432869,
+            "VY_kms": -4.5e-05,
+            "VZ_kms": 8.7e-05
+          }
+        },
+        {
+          "name": "HELO-4P-16_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4186.4959,
+            "Y_km": -0.4321,
+            "Z_km": 0.8459,
+            "VX_kms": 0.649549,
+            "VY_kms": -0.492239,
+            "VZ_kms": 0.963577
+          }
+        },
+        {
+          "name": "HELO-4P-16_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1190.3341,
+            "Y_km": 0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": -0.000179,
+            "VY_kms": 1.731477,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-16_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.4321,
+            "Y_km": 4186.4959,
+            "Z_km": -0.8459,
+            "VX_kms": -0.492373,
+            "VY_kms": 0.649058,
+            "VZ_kms": -0.963839
+          }
+        },
+        {
+          "name": "HELO-4P-16_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4761.3364,
+            "Y_km": -2.3747,
+            "Z_km": -9320.5069,
+            "VX_kms": 4.5e-05,
+            "VY_kms": -0.432869,
+            "VZ_kms": 8.7e-05
+          }
+        },
+        {
+          "name": "HELO-4P-16_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.4321,
+            "Y_km": -4186.4959,
+            "Z_km": 0.8459,
+            "VX_kms": 0.492239,
+            "VY_kms": 0.649549,
+            "VZ_kms": 0.963577
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "HELO-4P-12",
+      "family": "HELO",
+      "n_sats": 12,
+      "n_planes": 4,
+      "shared": {
+        "SMA_km": 6541.4,
+        "ECC": 0.6,
+        "INC_deg": 62.94,
+        "period_hr": 13.1875,
+        "periapsis_alt_km": 879.2,
+        "apoapsis_alt_km": 8728.8,
+        "simulation_duration_days": 28
+      },
+      "verified": true,
+      "note": "4-plane, 3 sats/plane. HELO layer of OPT-D.",
+      "satellites": [
+        {
+          "name": "HELO-4P-12_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.5937,
+            "Y_km": 1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": -1.731477,
+            "VY_kms": -0.000179,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-12_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -5178.7669,
+            "Y_km": -1360.9165,
+            "Z_km": -2664.0485,
+            "VX_kms": -0.108005,
+            "VY_kms": -0.42636,
+            "VZ_kms": -0.834618
+          }
+        },
+        {
+          "name": "HELO-4P-12_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 5180.1239,
+            "Y_km": -1359.8472,
+            "Z_km": -2661.9554,
+            "VX_kms": -0.10843,
+            "VY_kms": 0.426338,
+            "VZ_kms": 0.834574
+          }
+        },
+        {
+          "name": "HELO-4P-12_P2_S4",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1190.3341,
+            "Y_km": -0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": 0.000179,
+            "VY_kms": -1.731477,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-12_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1360.9165,
+            "Y_km": -5178.7669,
+            "Z_km": -2664.0485,
+            "VX_kms": 0.42636,
+            "VY_kms": -0.108005,
+            "VZ_kms": -0.834618
+          }
+        },
+        {
+          "name": "HELO-4P-12_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1359.8472,
+            "Y_km": 5180.1239,
+            "Z_km": -2661.9554,
+            "VX_kms": -0.426338,
+            "VY_kms": -0.10843,
+            "VZ_kms": 0.834574
+          }
+        },
+        {
+          "name": "HELO-4P-12_P3_S7",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.5937,
+            "Y_km": -1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": 1.731477,
+            "VY_kms": 0.000179,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-12_P3_S8",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 5178.7669,
+            "Y_km": 1360.9165,
+            "Z_km": -2664.0485,
+            "VX_kms": 0.108005,
+            "VY_kms": 0.42636,
+            "VZ_kms": -0.834618
+          }
+        },
+        {
+          "name": "HELO-4P-12_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -5180.1239,
+            "Y_km": 1359.8472,
+            "Z_km": -2661.9554,
+            "VX_kms": 0.10843,
+            "VY_kms": -0.426338,
+            "VZ_kms": 0.834574
+          }
+        },
+        {
+          "name": "HELO-4P-12_P4_S10",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1190.3341,
+            "Y_km": 0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": -0.000179,
+            "VY_kms": 1.731477,
+            "VZ_kms": -0.00035
+          }
+        },
+        {
+          "name": "HELO-4P-12_P4_S11",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1360.9165,
+            "Y_km": 5178.7669,
+            "Z_km": -2664.0485,
+            "VX_kms": -0.42636,
+            "VY_kms": 0.108005,
+            "VZ_kms": -0.834618
+          }
+        },
+        {
+          "name": "HELO-4P-12_P4_S12",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1359.8472,
+            "Y_km": -5180.1239,
+            "Z_km": -2661.9554,
+            "VX_kms": 0.426338,
+            "VY_kms": 0.10843,
+            "VZ_kms": 0.834574
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "NS-FELO-20",
+      "family": "NS-FELO",
+      "n_sats": 20,
+      "n_planes": 5,
+      "shared": {
+        "SMA_km": 2500,
+        "ECC": 0.2,
+        "INC_deg": 27,
+        "period_hr": 3.1158,
+        "periapsis_alt_km": 262.6,
+        "apoapsis_alt_km": 1262.6,
+        "simulation_duration_days": 28
+      },
+      "verified": false,
+      "note": "RECONSTRUCTED per-plane AOP (alternating 90/270). RAAN 0/72/144/216/288 uniform is confirmed; the AOP-per-plane split is not verified. Equatorial layer of OPT-B.",
+      "satellites": [
+        {
+          "name": "NS-FELO-20_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1694.7951,
+            "Y_km": -550.6723,
+            "Z_km": -907.981,
+            "VX_kms": 0.530005,
+            "VY_kms": 1.631188,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 741.6408,
+            "Y_km": 2282.5356,
+            "Z_km": -0.0,
+            "VX_kms": -1.122832,
+            "VY_kms": 0.665396,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2542.1927,
+            "Y_km": 826.0085,
+            "Z_km": 1361.9715,
+            "VX_kms": -0.353337,
+            "VY_kms": -1.087459,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -741.6408,
+            "Y_km": -2282.5356,
+            "Z_km": 0.0,
+            "VX_kms": 1.2995,
+            "VY_kms": -0.121667,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1047.441,
+            "Y_km": -1441.6788,
+            "Z_km": 907.981,
+            "VX_kms": 1.387571,
+            "VY_kms": -1.00813,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1941.6408,
+            "Y_km": -1410.6846,
+            "Z_km": 0.0,
+            "VX_kms": 0.979804,
+            "VY_kms": 0.862258,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1571.1615,
+            "Y_km": 2162.5183,
+            "Z_km": -1361.9715,
+            "VX_kms": -0.925048,
+            "VY_kms": 0.672086,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1941.6408,
+            "Y_km": 1410.6846,
+            "Z_km": -0.0,
+            "VX_kms": -0.51728,
+            "VY_kms": -1.198301,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1047.441,
+            "Y_km": 1441.6788,
+            "Z_km": -907.981,
+            "VX_kms": -1.387571,
+            "VY_kms": -1.00813,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1941.6408,
+            "Y_km": -1410.6846,
+            "Z_km": -0.0,
+            "VX_kms": 0.51728,
+            "VY_kms": -1.198301,
+            "VZ_kms": 0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1571.1615,
+            "Y_km": -2162.5183,
+            "Z_km": 1361.9715,
+            "VX_kms": 0.925048,
+            "VY_kms": 0.672086,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1941.6408,
+            "Y_km": 1410.6846,
+            "Z_km": 0.0,
+            "VX_kms": -0.979804,
+            "VY_kms": 0.862258,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P5_S17",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1694.7951,
+            "Y_km": 550.6723,
+            "Z_km": 907.981,
+            "VX_kms": -0.530005,
+            "VY_kms": 1.631188,
+            "VZ_kms": 0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P5_S18",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -741.6408,
+            "Y_km": 2282.5356,
+            "Z_km": 0.0,
+            "VX_kms": -1.2995,
+            "VY_kms": -0.121667,
+            "VZ_kms": -0.648878
+          }
+        },
+        {
+          "name": "NS-FELO-20_P5_S19",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2542.1927,
+            "Y_km": -826.0085,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.353337,
+            "VY_kms": -1.087459,
+            "VZ_kms": -0.0
+          }
+        },
+        {
+          "name": "NS-FELO-20_P5_S20",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 741.6408,
+            "Y_km": -2282.5356,
+            "Z_km": -0.0,
+            "VX_kms": 1.122832,
+            "VY_kms": 0.665396,
+            "VZ_kms": 0.648878
+          }
+        }
+      ]
+    },
+    {
+      "config_id": "OPT-D",
+      "family": "OPT (combined)",
+      "n_sats": 28,
+      "layers": [
+        "FELO-F7d-16",
+        "HELO-4P-12"
+      ],
+      "verified": true,
+      "note": "Minimum viable: FELO-F7d-16 + HELO-4P-12. 28 sats. 99.4/97.0/97.8, epoch-invariant.",
+      "satellites": [
+        {
+          "name": "OPT-D_FELO-F7d-16_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1260.0735,
+            "Y_km": 1260.0735,
+            "Z_km": 907.981,
+            "VX_kms": -1.212782,
+            "VY_kms": -1.212782,
+            "VZ_kms": 0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1697.0563,
+            "Y_km": -1697.0563,
+            "Z_km": 0.0,
+            "VX_kms": 0.698367,
+            "VY_kms": -1.102627,
+            "VZ_kms": -0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1890.1103,
+            "Y_km": -1890.1103,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.808521,
+            "VY_kms": 0.808521,
+            "VZ_kms": -0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 45,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.0563,
+            "Y_km": 1697.0563,
+            "Z_km": -0.0,
+            "VX_kms": -1.102627,
+            "VY_kms": 0.698367,
+            "VZ_kms": 0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1782.013,
+            "Y_km": 0.0,
+            "Z_km": 907.981,
+            "VX_kms": -0.0,
+            "VY_kms": -1.715133,
+            "VZ_kms": 0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2400.0,
+            "Z_km": 0.0,
+            "VX_kms": 1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": -0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2673.0196,
+            "Y_km": -0.0,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.0,
+            "VY_kms": 1.143422,
+            "VZ_kms": -0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 90,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 2400.0,
+            "Z_km": -0.0,
+            "VX_kms": -1.273495,
+            "VY_kms": -0.285855,
+            "VZ_kms": 0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1260.0735,
+            "Y_km": -1260.0735,
+            "Z_km": 907.981,
+            "VX_kms": 1.212782,
+            "VY_kms": -1.212782,
+            "VZ_kms": 0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1697.0563,
+            "Y_km": -1697.0563,
+            "Z_km": 0.0,
+            "VX_kms": 1.102627,
+            "VY_kms": 0.698367,
+            "VZ_kms": -0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1890.1103,
+            "Y_km": 1890.1103,
+            "Z_km": -1361.9715,
+            "VX_kms": -0.808521,
+            "VY_kms": 0.808521,
+            "VZ_kms": -0.0
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_FELO-F7d-16_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 135,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1697.0563,
+            "Y_km": 1697.0563,
+            "Z_km": -0.0,
+            "VX_kms": -0.698367,
+            "VY_kms": -1.102627,
+            "VZ_kms": 0.648878
+          },
+          "layer": "FELO-F7d-16"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.5937,
+            "Y_km": 1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": -1.731477,
+            "VY_kms": -0.000179,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -5178.7669,
+            "Y_km": -1360.9165,
+            "Z_km": -2664.0485,
+            "VX_kms": -0.108005,
+            "VY_kms": -0.42636,
+            "VZ_kms": -0.834618
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 5180.1239,
+            "Y_km": -1359.8472,
+            "Z_km": -2661.9554,
+            "VX_kms": -0.10843,
+            "VY_kms": 0.426338,
+            "VZ_kms": 0.834574
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P2_S4",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1190.3341,
+            "Y_km": -0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": 0.000179,
+            "VY_kms": -1.731477,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1360.9165,
+            "Y_km": -5178.7669,
+            "Z_km": -2664.0485,
+            "VX_kms": 0.42636,
+            "VY_kms": -0.108005,
+            "VZ_kms": -0.834618
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1359.8472,
+            "Y_km": 5180.1239,
+            "Z_km": -2661.9554,
+            "VX_kms": -0.426338,
+            "VY_kms": -0.10843,
+            "VZ_kms": 0.834574
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P3_S7",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.5937,
+            "Y_km": -1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": 1.731477,
+            "VY_kms": 0.000179,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P3_S8",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 5178.7669,
+            "Y_km": 1360.9165,
+            "Z_km": -2664.0485,
+            "VX_kms": 0.108005,
+            "VY_kms": 0.42636,
+            "VZ_kms": -0.834618
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -5180.1239,
+            "Y_km": 1359.8472,
+            "Z_km": -2661.9554,
+            "VX_kms": 0.10843,
+            "VY_kms": -0.426338,
+            "VZ_kms": 0.834574
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P4_S10",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1190.3341,
+            "Y_km": 0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": -0.000179,
+            "VY_kms": 1.731477,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P4_S11",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 120
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1360.9165,
+            "Y_km": 5178.7669,
+            "Z_km": -2664.0485,
+            "VX_kms": -0.42636,
+            "VY_kms": 0.108005,
+            "VZ_kms": -0.834618
+          },
+          "layer": "HELO-4P-12"
+        },
+        {
+          "name": "OPT-D_HELO-4P-12_P4_S12",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 240
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1359.8472,
+            "Y_km": -5180.1239,
+            "Z_km": -2661.9554,
+            "VX_kms": 0.426338,
+            "VY_kms": 0.10843,
+            "VZ_kms": 0.834574
+          },
+          "layer": "HELO-4P-12"
+        }
+      ]
+    },
+    {
+      "config_id": "OPT-B",
+      "family": "OPT (combined)",
+      "n_sats": 36,
+      "layers": [
+        "NS-FELO-20",
+        "HELO-4P-16"
+      ],
+      "verified": false,
+      "note": "Recommended: NS-FELO-20 + HELO-4P-16. 36 sats. 100/100/99.9. NS-FELO layer AOP split unverified.",
+      "satellites": [
+        {
+          "name": "OPT-B_HELO-4P-16_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.5937,
+            "Y_km": 1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": -1.731477,
+            "VY_kms": -0.000179,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4186.4959,
+            "Y_km": -0.4321,
+            "Z_km": -0.8459,
+            "VX_kms": -0.649058,
+            "VY_kms": -0.492373,
+            "VZ_kms": -0.963839
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2.3747,
+            "Y_km": -4761.3364,
+            "Z_km": -9320.5069,
+            "VX_kms": 0.432869,
+            "VY_kms": 4.5e-05,
+            "VZ_kms": 8.7e-05
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 0,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4186.4959,
+            "Y_km": 0.4321,
+            "Z_km": 0.8459,
+            "VX_kms": -0.649549,
+            "VY_kms": 0.492239,
+            "VZ_kms": 0.963577
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1190.3341,
+            "Y_km": -0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": 0.000179,
+            "VY_kms": -1.731477,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.4321,
+            "Y_km": -4186.4959,
+            "Z_km": -0.8459,
+            "VX_kms": 0.492373,
+            "VY_kms": -0.649058,
+            "VZ_kms": -0.963839
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4761.3364,
+            "Y_km": 2.3747,
+            "Z_km": -9320.5069,
+            "VX_kms": -4.5e-05,
+            "VY_kms": 0.432869,
+            "VZ_kms": 8.7e-05
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 90,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.4321,
+            "Y_km": 4186.4959,
+            "Z_km": 0.8459,
+            "VX_kms": -0.492239,
+            "VY_kms": -0.649549,
+            "VZ_kms": 0.963577
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.5937,
+            "Y_km": -1190.3341,
+            "Z_km": 2330.1267,
+            "VX_kms": 1.731477,
+            "VY_kms": 0.000179,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 4186.4959,
+            "Y_km": 0.4321,
+            "Z_km": -0.8459,
+            "VX_kms": 0.649058,
+            "VY_kms": 0.492373,
+            "VZ_kms": -0.963839
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2.3747,
+            "Y_km": 4761.3364,
+            "Z_km": -9320.5069,
+            "VX_kms": -0.432869,
+            "VY_kms": -4.5e-05,
+            "VZ_kms": 8.7e-05
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 180,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4186.4959,
+            "Y_km": -0.4321,
+            "Z_km": 0.8459,
+            "VX_kms": 0.649549,
+            "VY_kms": -0.492239,
+            "VZ_kms": 0.963577
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1190.3341,
+            "Y_km": 0.5937,
+            "Z_km": 2330.1267,
+            "VX_kms": -0.000179,
+            "VY_kms": 1.731477,
+            "VZ_kms": -0.00035
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.4321,
+            "Y_km": 4186.4959,
+            "Z_km": -0.8459,
+            "VX_kms": -0.492373,
+            "VY_kms": 0.649058,
+            "VZ_kms": -0.963839
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -4761.3364,
+            "Y_km": -2.3747,
+            "Z_km": -9320.5069,
+            "VX_kms": 4.5e-05,
+            "VY_kms": -0.432869,
+            "VZ_kms": 8.7e-05
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_HELO-4P-16_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 6541.4,
+            "ECC": 0.6,
+            "INC_deg": 62.94,
+            "RAAN_deg": 270,
+            "AOP_deg": 90.013,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.4321,
+            "Y_km": -4186.4959,
+            "Z_km": 0.8459,
+            "VX_kms": 0.492239,
+            "VY_kms": 0.649549,
+            "VZ_kms": 0.963577
+          },
+          "layer": "HELO-4P-16"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P1_S1",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 0.0,
+            "Y_km": 1782.013,
+            "Z_km": 907.981,
+            "VX_kms": -1.715133,
+            "VY_kms": 0.0,
+            "VZ_kms": 0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P1_S2",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2400.0,
+            "Y_km": 0.0,
+            "Z_km": 0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": -1.273495,
+            "VZ_kms": -0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P1_S3",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -0.0,
+            "Y_km": -2673.0196,
+            "Z_km": -1361.9715,
+            "VX_kms": 1.143422,
+            "VY_kms": -0.0,
+            "VZ_kms": -0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P1_S4",
+          "plane": 1,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 0,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 2400.0,
+            "Y_km": -0.0,
+            "Z_km": -0.0,
+            "VX_kms": -0.285855,
+            "VY_kms": 1.273495,
+            "VZ_kms": 0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P2_S5",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1694.7951,
+            "Y_km": -550.6723,
+            "Z_km": -907.981,
+            "VX_kms": 0.530005,
+            "VY_kms": 1.631188,
+            "VZ_kms": -0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P2_S6",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 741.6408,
+            "Y_km": 2282.5356,
+            "Z_km": -0.0,
+            "VX_kms": -1.122832,
+            "VY_kms": 0.665396,
+            "VZ_kms": 0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P2_S7",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2542.1927,
+            "Y_km": 826.0085,
+            "Z_km": 1361.9715,
+            "VX_kms": -0.353337,
+            "VY_kms": -1.087459,
+            "VZ_kms": 0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P2_S8",
+          "plane": 2,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 72,
+            "AOP_deg": 270,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -741.6408,
+            "Y_km": -2282.5356,
+            "Z_km": 0.0,
+            "VX_kms": 1.2995,
+            "VY_kms": -0.121667,
+            "VZ_kms": -0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P3_S9",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1047.441,
+            "Y_km": -1441.6788,
+            "Z_km": 907.981,
+            "VX_kms": 1.387571,
+            "VY_kms": -1.00813,
+            "VZ_kms": 0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P3_S10",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1941.6408,
+            "Y_km": -1410.6846,
+            "Z_km": 0.0,
+            "VX_kms": 0.979804,
+            "VY_kms": 0.862258,
+            "VZ_kms": -0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P3_S11",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1571.1615,
+            "Y_km": 2162.5183,
+            "Z_km": -1361.9715,
+            "VX_kms": -0.925048,
+            "VY_kms": 0.672086,
+            "VZ_kms": -0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P3_S12",
+          "plane": 3,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 144,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1941.6408,
+            "Y_km": 1410.6846,
+            "Z_km": -0.0,
+            "VX_kms": -0.51728,
+            "VY_kms": -1.198301,
+            "VZ_kms": 0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P4_S13",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1047.441,
+            "Y_km": 1441.6788,
+            "Z_km": -907.981,
+            "VX_kms": -1.387571,
+            "VY_kms": -1.00813,
+            "VZ_kms": -0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P4_S14",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -1941.6408,
+            "Y_km": -1410.6846,
+            "Z_km": -0.0,
+            "VX_kms": 0.51728,
+            "VY_kms": -1.198301,
+            "VZ_kms": 0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P4_S15",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1571.1615,
+            "Y_km": -2162.5183,
+            "Z_km": 1361.9715,
+            "VX_kms": 0.925048,
+            "VY_kms": 0.672086,
+            "VZ_kms": 0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P4_S16",
+          "plane": 4,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 216,
+            "AOP_deg": 270,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1941.6408,
+            "Y_km": 1410.6846,
+            "Z_km": 0.0,
+            "VX_kms": -0.979804,
+            "VY_kms": 0.862258,
+            "VZ_kms": -0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P5_S17",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 0
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 1694.7951,
+            "Y_km": 550.6723,
+            "Z_km": 907.981,
+            "VX_kms": -0.530005,
+            "VY_kms": 1.631188,
+            "VZ_kms": 0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P5_S18",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 90
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -741.6408,
+            "Y_km": 2282.5356,
+            "Z_km": 0.0,
+            "VX_kms": -1.2995,
+            "VY_kms": -0.121667,
+            "VZ_kms": -0.648878
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P5_S19",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 180
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": -2542.1927,
+            "Y_km": -826.0085,
+            "Z_km": -1361.9715,
+            "VX_kms": 0.353337,
+            "VY_kms": -1.087459,
+            "VZ_kms": -0.0
+          },
+          "layer": "NS-FELO-20"
+        },
+        {
+          "name": "OPT-B_NS-FELO-20_P5_S20",
+          "plane": 5,
+          "kepler": {
+            "SMA_km": 2500,
+            "ECC": 0.2,
+            "INC_deg": 27,
+            "RAAN_deg": 288,
+            "AOP_deg": 90,
+            "TA_deg": 270
+          },
+          "state_MoonMJ2000Eq": {
+            "X_km": 741.6408,
+            "Y_km": -2282.5356,
+            "Z_km": -0.0,
+            "VX_kms": 1.122832,
+            "VY_kms": 0.665396,
+            "VZ_kms": 0.648878
+          },
+          "layer": "NS-FELO-20"
+        }
+      ]
+    }
+  ]
+}

@@ -1,28 +1,33 @@
 """
-service.py -- Phase 3: propagation service with WebSocket push and dashboard
+service.py -- Phase 4: multi-body, multi-scenario propagation service
 
-Architecture:
+    per-scenario fast loop (2 s)   ->\
+                                      snapshot -> WebSocket push -> subscribed clients
+    per-scenario track loop        ->/
 
-    fast loop (2 s)    ->\
-                          in-memory snapshot -> WebSocket broadcast -> browsers
-    slow loop (5 min)  ->/
+Each scenario pairs a Source (how to get inertial positions) with a Body (how to
+rotate into the body-fixed frame) and a set of observation sites. Earth/GPS and
+Moon/Prometheus run through exactly the same pipeline; nothing here branches on
+which body it is.
 
-Two loops at different cadences because the two data products change at very
-different rates:
+Two decisions worth naming:
 
-  * live position (az/el/subpoint) changes every second        -> 2 s cadence
-  * ground-track geometry is nearly identical minute to minute -> 5 min cadence
+  * Look-angles are computed for EVERY site of a scenario, not just a selected
+    one. The topocentric transform is a 3x3 multiply per satellite per site --
+    negligible -- and doing all of them means switching sites in the browser is
+    instant with no server round trip.
 
-Recomputing 32 tracks x 61 points every 2 s would waste ~97% of that compute for
-no visible benefit. Decoupling update rates by rate-of-change is what keeps this
-comfortable on a Pi 5.
+  * Clients subscribe to one scenario. A scenario with no subscribers is still
+    propagated (keeps state warm and the code simple), but only subscribers are
+    pushed to.
 
-Nothing is written to disk. Satellite state at time t is worthless at t+5s.
+Nothing is written to disk.
 
-Run with:   uvicorn service:app --host 0.0.0.0 --port 8000
+Run:  uvicorn service:app --host 0.0.0.0 --port 8000
 """
 
 import asyncio
+import math
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -30,177 +35,204 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from sgp4.api import jday
-from skyfield.api import load
+
+import numpy as np
 
 import propagate
-
-# ---------------- Configuration ----------------
-SITE_LAT = 37.336812334419164   # deg, +North
-SITE_LON = -121.88117116201111  # deg, +East
-SITE_ALT = 26.0                 # metres above the WGS84 ellipsoid
-
-GPS_TLE_URL = "https://celestrak.org/NORAD/elements/gp.php?GROUP=gps-ops&FORMAT=tle"
-
-PROPAGATION_INTERVAL_S = 2.0        # fast loop: live positions
-TRACK_INTERVAL_S = 300.0            # slow loop: ground-track geometry
-TLE_REFRESH_INTERVAL_S = 6 * 3600   # re-fetch TLEs every 6 hours
-
-TRACK_HALF_WINDOW_MIN = 60          # track spans now +/- this many minutes
-TRACK_STEP_MIN = 2                  # sample interval along the track
-
-EL_MASK_DEG = 10.0                  # horizon mask for "visible"
+import sources as src_mod
 
 STATIC_DIR = Path(__file__).parent / "static"
 
-# ---------------- Shared in-memory state ----------------
-# Written only by the background loops, read by endpoints and the broadcaster.
-# Each cycle rebuilds a fresh dict and rebinds the name (atomic in CPython), so
-# readers always see a complete, self-consistent snapshot without locking.
-_snapshot = {
-    "updated_utc": None,
-    "site": {"lat_deg": SITE_LAT, "lon_deg": SITE_LON, "alt_m": SITE_ALT},
-    "elevation_mask_deg": EL_MASK_DEG,
-    "satellite_count": 0,
-    "satellites": [],
-}
-_tracks = {"computed_utc": None, "tracks": []}
+PROPAGATION_INTERVAL_S = 2.0
+TRACK_INTERVAL_S = 300.0
+TRACK_STEPS = 60                      # samples across the whole track window
 
-_satellites = []
-_tles_loaded_at = None
-_clients: set[WebSocket] = set()
+SCENARIOS = src_mod.build_scenarios()
+DEFAULT_SCENARIO = "gps"
+
+# scenario_id -> snapshot / tracks
+_snapshots = {}
+_tracks = {}
+_clients = {}                         # WebSocket -> scenario_id
 
 
-# ---------------- Catalogue ----------------
-def _load_tles():
-    global _satellites, _tles_loaded_at
-    _satellites = load.tle_file(GPS_TLE_URL)
-    _tles_loaded_at = datetime.now(timezone.utc)
-    return len(_satellites)
+# ---------------- Propagation ----------------
+def _site_payload(scn):
+    return [{"name": s.name, "lat_deg": s.lat_deg, "lon_deg": s.lon_deg,
+             "alt_km": s.alt_km} for s in scn.sites]
 
 
-def _jday_for(dt):
-    return jday(dt.year, dt.month, dt.day,
-                dt.hour, dt.minute, dt.second + dt.microsecond * 1e-6)
+def _dop(unit_los):
+    """Geometric and position dilution of precision from unit line-of-sight vectors.
+
+    Build the geometry matrix G with one row per visible satellite:
+        [-ex, -ey, -ez, 1]      (negated direction cosines, plus clock-bias term)
+    then H = inv(G^T G). GDOP is the root of the trace of all four diagonal terms;
+    PDOP uses only the three position terms. Needs >= 4 satellites and a
+    non-singular G -- a near-singular G means the satellites are clustered and
+    the position solution is poorly conditioned, which is exactly what DOP
+    measures.
+    """
+    if len(unit_los) < 4:
+        return None, None
+    G = np.array([[-v[0], -v[1], -v[2], 1.0] for v in unit_los])
+    try:
+        H = np.linalg.inv(G.T @ G)
+    except np.linalg.LinAlgError:
+        return None, None
+    d = np.diag(H)
+    if np.any(d < 0):
+        return None, None
+    return float(math.sqrt(d.sum())), float(math.sqrt(d[:3].sum()))
 
 
-# ---------------- Fast loop: live state ----------------
-def _propagate_all():
-    """Full hand-rolled pipeline for every satellite at the current instant."""
-    now = datetime.now(timezone.utc)
-    jd, fr = _jday_for(now)
+def _propagate(scn, when):
+    """Full pipeline for one scenario at one instant, for all of its sites."""
+    body = scn.body
+    mask = body.default_mask_deg
+    jd = src_mod.datetime_to_jd(when)
+    R = body.inertial_to_fixed(jd)         # Stage 1, computed once per cycle
 
-    results = []
-    for sat in _satellites:
-        try:
-            r = propagate.look_angles(sat.model, SITE_LAT, SITE_LON, SITE_ALT, jd, fr)
-            # Convert numpy scalars to native Python types at this boundary --
-            # numpy types are fine inside the compute layer but are not JSON
-            # serialisable on the way out.
-            results.append({
-                "name": sat.name,
-                "norad_id": int(sat.model.satnum),
-                "az_deg": round(float(r["az_deg"]), 4),
-                "el_deg": round(float(r["el_deg"]), 4),
-                "range_km": round(float(r["range_km"]), 3),
-                "lat_deg": round(float(r["sub_lat_deg"]), 5),
-                "lon_deg": round(float(r["sub_lon_deg"]), 5),
-                "alt_km": round(float(r["sub_alt_km"]), 3),
-                "visible": bool(r["el_deg"] > EL_MASK_DEG),
-            })
-        except Exception as ex:
-            results.append({"name": sat.name, "error": str(ex)})
+    obs = {}
+    for s in scn.sites:
+        lat0, lon0 = math.radians(s.lat_deg), math.radians(s.lon_deg)
+        obs[s.name] = (lat0, lon0,
+                       propagate.geodetic_to_fixed(lat0, lon0, s.alt_km, body))
+
+    los = {s.name: [] for s in scn.sites}
+    out = []
+    for p in scn.source.positions(when):
+        r_fixed = R @ p["r_km"]
+        lat, lon, alt = propagate.fixed_to_geodetic(r_fixed, body)   # Stage 2
+
+        per_site = {}
+        any_visible = False
+        for s in scn.sites:                                          # Stage 3
+            lat0, lon0, r_obs = obs[s.name]
+            enu = propagate.fixed_to_enu(r_fixed - r_obs, lat0, lon0)
+            az, el, rng = propagate.enu_to_azel(enu)
+            vis = math.degrees(el) > mask
+            if vis:
+                any_visible = True
+                los[s.name].append(np.asarray(enu) / rng)
+            per_site[s.name] = {"az_deg": round(math.degrees(az), 4),
+                                "el_deg": round(math.degrees(el), 4),
+                                "range_km": round(rng, 3),
+                                "visible": bool(vis)}
+
+        out.append({
+            "name": p["name"],
+            "layer": p.get("layer"),
+            "plane": p.get("plane"),
+            "norad_id": p.get("norad_id"),
+            "lat_deg": round(math.degrees(lat), 5),
+            "lon_deg": round(math.degrees(lon), 5),
+            "alt_km": round(alt, 3),
+            "sites": per_site,
+            "any_visible": bool(any_visible),
+        })
+
+    dop = {}
+    for s in scn.sites:
+        g, p_ = _dop(los[s.name])
+        dop[s.name] = {
+            "n_visible": len(los[s.name]),
+            "gdop": round(g, 3) if g is not None else None,
+            "pdop": round(p_, 3) if p_ is not None else None,
+        }
 
     return {
-        "updated_utc": now.isoformat(),
-        "site": {"lat_deg": SITE_LAT, "lon_deg": SITE_LON, "alt_m": SITE_ALT},
-        "elevation_mask_deg": EL_MASK_DEG,
-        "satellite_count": len(results),
-        "satellites": results,
+        "type": "state",
+        "scenario": scn.id,
+        "updated_utc": when.isoformat(),
+        "body": body.name,
+        "frame": body.inertial_frame,
+        "body_radius_km": body.radius_km,
+        "elevation_mask_deg": mask,
+        "sites": _site_payload(scn),
+        "dop": dop,
+        "satellite_count": len(out),
+        "satellites": out,
     }
 
 
-# ---------------- Slow loop: ground tracks ----------------
-def _compute_tracks():
-    """Sample each satellite's subpoint over a window centred on now.
+def _compute_tracks(scn, when):
+    """Subpoint history/future, window scaled to the orbit period by the source."""
+    body = scn.body
+    half = scn.source.track_half_window_s()
+    step = 2 * half / TRACK_STEPS
 
-    Returns a flat list of [lat, lon] pairs per satellite. The frontend splits
-    the polyline wherever it crosses the antimeridian.
-    """
-    now = datetime.now(timezone.utc)
-    offsets = range(-TRACK_HALF_WINDOW_MIN, TRACK_HALF_WINDOW_MIN + 1, TRACK_STEP_MIN)
+    series = {}
+    for i in range(TRACK_STEPS + 1):
+        t = when + timedelta(seconds=-half + i * step)
+        R = body.inertial_to_fixed(src_mod.datetime_to_jd(t))
+        for p in scn.source.positions(t):
+            lat, lon, _ = propagate.fixed_to_geodetic(R @ p["r_km"], body)
+            series.setdefault(p["name"], {"name": p["name"],
+                                          "layer": p.get("layer"),
+                                          "points": []})
+            series[p["name"]]["points"].append(
+                [round(math.degrees(lat), 3), round(math.degrees(lon), 3)])
 
-    out = []
-    for sat in _satellites:
-        pts = []
-        for m in offsets:
-            t = now + timedelta(minutes=m)
-            jd, fr = _jday_for(t)
-            try:
-                r = propagate.look_angles(sat.model, SITE_LAT, SITE_LON, SITE_ALT, jd, fr)
-                pts.append([round(float(r["sub_lat_deg"]), 3),
-                            round(float(r["sub_lon_deg"]), 3)])
-            except Exception:
-                continue  # drop a bad sample rather than lose the whole track
-        out.append({"norad_id": int(sat.model.satnum), "name": sat.name, "points": pts})
-
-    return {"computed_utc": now.isoformat(), "tracks": out}
+    return {"type": "tracks", "scenario": scn.id,
+            "computed_utc": when.isoformat(),
+            "window_hours": round(2 * half / 3600.0, 2),
+            "tracks": list(series.values())}
 
 
-# ---------------- WebSocket fan-out ----------------
-async def _broadcast(message: dict):
-    """Send one message to every connected client, dropping any that have died."""
+# ---------------- Broadcast ----------------
+async def _broadcast(scenario_id, message):
     dead = []
-    for ws in list(_clients):
+    for ws, sid in list(_clients.items()):
+        if sid != scenario_id:
+            continue
         try:
             await ws.send_json(message)
         except Exception:
             dead.append(ws)
     for ws in dead:
-        _clients.discard(ws)
+        _clients.pop(ws, None)
 
 
-# ---------------- Background tasks ----------------
-async def _fast_loop():
-    global _snapshot
+# ---------------- Loops ----------------
+async def _fast_loop(scn):
     while True:
         try:
-            stale = (_tles_loaded_at is None or
-                     (datetime.now(timezone.utc) - _tles_loaded_at).total_seconds()
-                     > TLE_REFRESH_INTERVAL_S)
-            if stale:
-                # Blocking network I/O -- run off the event loop so the HTTP and
-                # WebSocket servers stay responsive.
-                count = await asyncio.to_thread(_load_tles)
-                print(f"[tle] loaded {count} satellites")
-
-            # SGP4 across the catalogue is CPU-bound; offload it too.
-            _snapshot = await asyncio.to_thread(_propagate_all)
-            await _broadcast({"type": "state", **_snapshot})
+            await asyncio.to_thread(scn.source.ensure_loaded)
+            if scn.source.is_ready():
+                snap = await asyncio.to_thread(_propagate, scn,
+                                               datetime.now(timezone.utc))
+                _snapshots[scn.id] = snap
+                await _broadcast(scn.id, snap)
         except Exception as ex:
-            print(f"[fast] error: {ex}")
+            print(f"[fast:{scn.id}] {type(ex).__name__}: {ex}")
         await asyncio.sleep(PROPAGATION_INTERVAL_S)
 
 
-async def _track_loop():
-    global _tracks
+async def _track_loop(scn):
     while True:
         try:
-            if not _satellites:
-                await asyncio.sleep(2)   # catalogue not loaded yet, retry shortly
+            if not scn.source.is_ready():
+                await asyncio.sleep(2)
                 continue
-            _tracks = await asyncio.to_thread(_compute_tracks)
-            await _broadcast({"type": "tracks", **_tracks})
-            print(f"[track] recomputed {len(_tracks['tracks'])} ground tracks")
+            tr = await asyncio.to_thread(_compute_tracks, scn,
+                                         datetime.now(timezone.utc))
+            _tracks[scn.id] = tr
+            await _broadcast(scn.id, tr)
+            print(f"[track:{scn.id}] {len(tr['tracks'])} tracks, "
+                  f"{tr['window_hours']} hr window")
         except Exception as ex:
-            print(f"[track] error: {ex}")
+            print(f"[track:{scn.id}] {type(ex).__name__}: {ex}")
         await asyncio.sleep(TRACK_INTERVAL_S)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    tasks = [asyncio.create_task(_fast_loop()), asyncio.create_task(_track_loop())]
-    print("[service] propagation loops started")
+    tasks = []
+    for scn in SCENARIOS.values():
+        tasks.append(asyncio.create_task(_fast_loop(scn)))
+        tasks.append(asyncio.create_task(_track_loop(scn)))
+    print(f"[service] {len(SCENARIOS)} scenarios, {len(tasks)} loops started")
     yield
     for t in tasks:
         t.cancel()
@@ -209,13 +241,13 @@ async def lifespan(app: FastAPI):
             await t
         except asyncio.CancelledError:
             pass
-    print("[service] propagation loops stopped")
+    print("[service] loops stopped")
 
 
 app = FastAPI(
     title="Orbit Visualiser",
-    description="Live GPS constellation propagation, ground tracks and site visibility.",
-    version="0.3.0",
+    description="Multi-body constellation propagation: Earth/SGP4 and Moon/Kepler.",
+    version="0.4.0",
     lifespan=lifespan,
 )
 
@@ -224,73 +256,113 @@ app = FastAPI(
 @app.get("/", include_in_schema=False)
 def dashboard():
     return FileResponse(STATIC_DIR / "index.html")
+
+
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+
+def _catalog():
+    items = []
+    for scn in SCENARIOS.values():
+        s = scn.source
+        items.append({
+            "id": scn.id, "label": scn.label, "group": scn.group,
+            "body": scn.body.name, "frame": scn.body.inertial_frame,
+            "mask_deg": scn.body.default_mask_deg,
+            "verified": getattr(s, "verified", True),
+            "note": getattr(s, "note", ""),
+            "layers": s.layers(),
+            "coverage": scn.coverage,
+            "sites": _site_payload(scn),
+            "ready": s.is_ready(),
+            "count": _snapshots.get(scn.id, {}).get("satellite_count", 0),
+        })
+    return items
+
+
+@app.get("/api/scenarios")
+def scenarios():
+    return {"default": DEFAULT_SCENARIO, "scenarios": _catalog()}
 
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    """Push state on every fast cycle, and tracks whenever they are recomputed."""
     await websocket.accept()
-    _clients.add(websocket)
+    _clients[websocket] = DEFAULT_SCENARIO
     try:
-        # Prime the new client immediately rather than making it wait for the
-        # next broadcast -- tracks especially, since those are 5 minutes apart.
-        if _tracks["computed_utc"]:
-            await websocket.send_json({"type": "tracks", **_tracks})
-        if _snapshot["updated_utc"]:
-            await websocket.send_json({"type": "state", **_snapshot})
+        await websocket.send_json({"type": "catalog", "default": DEFAULT_SCENARIO,
+                                   "scenarios": _catalog()})
+        await _prime(websocket, DEFAULT_SCENARIO)
         while True:
-            await websocket.receive_text()   # blocks until the client disconnects
+            msg = await websocket.receive_json()
+            if msg.get("type") == "subscribe":
+                sid = msg.get("scenario")
+                if sid in SCENARIOS:
+                    _clients[websocket] = sid
+                    await _prime(websocket, sid)
     except WebSocketDisconnect:
         pass
     except Exception:
         pass
     finally:
-        _clients.discard(websocket)
+        _clients.pop(websocket, None)
 
 
-# ---------------- REST endpoints (kept for debugging and tooling) ----------------
+async def _prime(websocket, sid):
+    """Send whatever state exists now so a new subscriber renders immediately."""
+    if sid in _tracks:
+        await websocket.send_json(_tracks[sid])
+    if sid in _snapshots:
+        await websocket.send_json(_snapshots[sid])
+
+
+# ---------------- REST ----------------
 @app.get("/health")
 def health():
-    updated = _snapshot.get("updated_utc")
-    age = None
-    if updated:
-        age = (datetime.now(timezone.utc) - datetime.fromisoformat(updated)).total_seconds()
-    return {
-        "status": "ok",
-        "snapshot_age_s": round(age, 3) if age is not None else None,
-        "satellite_count": _snapshot.get("satellite_count", 0),
-        "tracks_computed_utc": _tracks.get("computed_utc"),
-        "websocket_clients": len(_clients),
-        "tles_loaded_utc": _tles_loaded_at.isoformat() if _tles_loaded_at else None,
-    }
+    per = {}
+    now = datetime.now(timezone.utc)
+    for sid, snap in _snapshots.items():
+        age = (now - datetime.fromisoformat(snap["updated_utc"])).total_seconds()
+        per[sid] = {"age_s": round(age, 3), "count": snap["satellite_count"],
+                    "tracks": sid in _tracks}
+    return {"status": "ok", "scenarios": len(SCENARIOS),
+            "websocket_clients": len(_clients), "snapshots": per}
 
 
-@app.get("/api/satellites")
-def all_satellites():
-    return _snapshot
+@app.get("/api/satellites/{scenario_id}")
+def all_satellites(scenario_id: str):
+    if scenario_id not in SCENARIOS:
+        raise HTTPException(404, f"unknown scenario {scenario_id!r}")
+    snap = _snapshots.get(scenario_id)
+    if not snap:
+        raise HTTPException(503, "no propagation cycle has completed yet")
+    return snap
 
 
-@app.get("/api/visible")
-def visible_satellites():
-    sats = [s for s in _snapshot.get("satellites", []) if s.get("visible")]
+@app.get("/api/visible/{scenario_id}")
+def visible(scenario_id: str, site: str | None = None):
+    if scenario_id not in SCENARIOS:
+        raise HTTPException(404, f"unknown scenario {scenario_id!r}")
+    snap = _snapshots.get(scenario_id)
+    if not snap:
+        raise HTTPException(503, "no propagation cycle has completed yet")
+    site = site or snap["sites"][0]["name"]
+    if site not in snap["satellites"][0]["sites"]:
+        raise HTTPException(404, f"unknown site {site!r} for this scenario")
+    sats = [{**{k: v for k, v in s.items() if k != "sites"}, **s["sites"][site]}
+            for s in snap["satellites"] if s["sites"][site]["visible"]]
     sats.sort(key=lambda s: -s["el_deg"])
-    return {
-        "updated_utc": _snapshot.get("updated_utc"),
-        "elevation_mask_deg": EL_MASK_DEG,
-        "count": len(sats),
-        "satellites": sats,
-    }
+    return {"scenario": scenario_id, "site": site,
+            "updated_utc": snap["updated_utc"],
+            "elevation_mask_deg": snap["elevation_mask_deg"],
+            "count": len(sats), "satellites": sats}
 
 
-@app.get("/api/tracks")
-def ground_tracks():
-    return _tracks
-
-
-@app.get("/api/satellite/{norad_id}")
-def one_satellite(norad_id: int):
-    for s in _snapshot.get("satellites", []):
-        if s.get("norad_id") == norad_id:
-            return {"updated_utc": _snapshot.get("updated_utc"), **s}
-    raise HTTPException(status_code=404, detail=f"NORAD ID {norad_id} not in catalogue")
+@app.get("/api/tracks/{scenario_id}")
+def tracks(scenario_id: str):
+    if scenario_id not in SCENARIOS:
+        raise HTTPException(404, f"unknown scenario {scenario_id!r}")
+    tr = _tracks.get(scenario_id)
+    if not tr:
+        raise HTTPException(503, "tracks not computed yet")
+    return tr
