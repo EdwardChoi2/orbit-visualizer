@@ -41,6 +41,20 @@
   .graticule{stroke:var(--line);stroke-width:.5;fill:none}
   .coast{stroke:#2c3a4d;stroke-width:.6;fill:#161e29}
   .farside{fill:#0a0e13;stroke:none}
+  .mare{fill:#1b2735;stroke:#243447;stroke-width:.5}
+  .basin{fill:#141d28;stroke:#22303f;stroke-width:.5;stroke-dasharray:3 2}
+  .crater{fill:none;stroke:#3d4f63;stroke-width:.7}
+  .featlabel{fill:#4a5c72;font-size:6.5px;pointer-events:none}
+  .cratlabel{fill:#3d4f63;font-size:5.5px;pointer-events:none}
+  .req{display:flex;justify-content:space-between;padding:3px 0;
+       border-bottom:1px solid #161d27}
+  .req span:first-child{color:var(--muted)}
+  .pass{color:var(--ok)} .fail{color:var(--warn)}
+  .sitestrip{width:100%;border-collapse:collapse;margin-bottom:2px}
+  .sitestrip td,.sitestrip th{padding:2px 4px;font-size:11px}
+  .sitestrip tr.active{background:#16202c}
+  .params{font-size:11px;color:var(--muted);line-height:1.7}
+  .params b{color:var(--text);font-weight:600}
   .frame{stroke:var(--line);stroke-width:1;fill:none}
   .track{fill:none;stroke-width:.8;opacity:.45}
   .ring{stroke:var(--line);stroke-width:.7;fill:none}
@@ -119,6 +133,30 @@
       </table>
       <div id="visempty" class="empty">waiting for data&hellip;</div>
     </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h2>Requirements &middot; live compliance</h2>
+      <div id="reqs"></div>
+      <svg id="spark" viewBox="0 0 300 46" preserveAspectRatio="none"
+           style="margin-top:9px;height:46px"></svg>
+      <div style="color:var(--muted);font-size:10px;margin-top:3px">
+        GDOP, last <span id="sparkspan">&mdash;</span> &middot; dashed line = limit 6
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h2>All observers</h2>
+      <table class="sitestrip">
+        <thead><tr><th>Site</th><th style="text-align:right">n</th>
+        <th style="text-align:right">GDOP</th><th style="text-align:right">Avail</th></tr></thead>
+        <tbody id="sitestrip"></tbody>
+      </table>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h2>Design parameters</h2>
+      <div id="params" class="params">&mdash;</div>
+    </div>
   </div>
 </div>
 
@@ -190,13 +228,76 @@ async function loadCoast(){
   }catch(e){console.warn("coastlines unavailable",e);}
 }
 
+
+// ---------- lunar surface features ----------
+// Schematic, not photographic: published centre coordinates and diameters,
+// drawn as ellipses of angular radius D/2R. On an equirectangular projection a
+// circle of angular radius r spans r degrees of latitude but r/cos(lat) degrees
+// of longitude, hence the stretch factor.
+const R_MOON = 1737.4;
+const MARIA = [
+  ["Oceanus Procellarum",  18.4,  -57.4, 2568],
+  ["Mare Imbrium",         32.8,  -15.6, 1145],
+  ["Mare Frigoris",        56.0,    1.4, 1596],
+  ["Mare Serenitatis",     28.0,   17.5,  707],
+  ["Mare Tranquillitatis",  8.5,   31.4,  873],
+  ["Mare Crisium",         17.0,   59.1,  556],
+  ["Mare Fecunditatis",    -7.8,   51.3,  909],
+  ["Mare Nectaris",       -15.2,   35.5,  333],
+  ["Mare Nubium",         -21.3,  -16.6,  715],
+  ["Mare Humorum",        -24.4,  -38.6,  389],
+  ["Mare Vaporum",         13.3,    3.6,  245],
+  ["Mare Smythii",          1.3,   87.5,  373],
+  ["Mare Marginis",        13.3,   86.1,  420],
+  ["Mare Orientale",      -19.4,  -92.8,  294],
+  ["Mare Moscoviense",     27.3,  147.9,  277],
+  ["Mare Ingenii",        -33.7,  163.5,  282],
+];
+const BASINS = [
+  ["South Pole-Aitken",   -53.0, -169.0, 2500],
+];
+const CRATERS = [
+  ["Tycho",       -43.3,  -11.4], ["Copernicus",   9.6,  -20.1],
+  ["Aristarchus",  23.7,  -47.4], ["Plato",       51.6,   -9.3],
+  ["Kepler",        8.1,  -38.0], ["Grimaldi",    -5.5,  -68.3],
+  ["Clavius",     -58.4,  -14.4], ["Korolev",     -4.0, -157.4],
+  ["Jackson",      22.4, -163.1], ["Apollo",     -36.1, -151.8],
+  ["Hertzsprung",   1.4, -129.2],
+];
+
+function drawLunarSurface(){
+  const g=document.getElementById("coast"); g.replaceChildren(); g.style.display="";
+  const ell=(lat,lon,diam,cls,op)=>{
+    const ar=(diam/2)/R_MOON*180/Math.PI;               // angular radius, degrees
+    const ry=ar*(MAP_H/180);
+    const rx=Math.min(ar/Math.max(Math.cos(lat*Math.PI/180),0.12),180)*(MAP_W/360);
+    g.appendChild(el("ellipse",{class:cls,cx:projX(lon),cy:projY(lat),rx:rx,ry:ry,
+                                opacity:op}));
+  };
+  BASINS.forEach(([n,la,lo,d])=>ell(la,lo,d,"basin",.55));
+  MARIA.forEach(([n,la,lo,d])=>ell(la,lo,d,"mare",.85));
+  MARIA.filter(m=>m[3]>=500).forEach(([n,la,lo])=>{
+    g.appendChild(txt("text",{class:"featlabel",x:projX(lo),y:projY(la),
+                              "text-anchor":"middle","dominant-baseline":"central"},n));
+  });
+  BASINS.forEach(([n,la,lo])=>{
+    g.appendChild(txt("text",{class:"featlabel",x:projX(lo),y:projY(la),
+                              "text-anchor":"middle","dominant-baseline":"central"},n));
+  });
+  CRATERS.forEach(([n,la,lo])=>{
+    g.appendChild(el("circle",{class:"crater",cx:projX(lo),cy:projY(la),r:1.6}));
+    g.appendChild(txt("text",{class:"cratlabel",x:projX(lo)+3,y:projY(la)+3},n));
+  });
+}
+
 function setBodyChrome(body){
   const coast=document.getElementById("coast"), fs=document.getElementById("farside");
   if(body==="Earth"){
-    fs.replaceChildren(); coast.style.display=""; loadCoast();
+    fs.replaceChildren(); coast.replaceChildren(); coast.style.display="";
+    coastDrawn=false; loadCoast();
     document.getElementById("maptitle").textContent="Ground tracks - equirectangular";
   }else{
-    coast.style.display="none"; fs.replaceChildren();
+    drawLunarSurface(); fs.replaceChildren();
     // Shade the lunar far side (|lon| > 90): meaningful for comms and coverage.
     fs.appendChild(el("rect",{class:"farside",x:0,y:0,width:projX(-90),height:MAP_H}));
     fs.appendChild(el("rect",{class:"farside",x:projX(90),y:0,
@@ -222,10 +323,18 @@ function colorFor(layer){
 function renderTracks(){
   const g=document.getElementById("tracks"); g.replaceChildren();
   if(!tracksMsg||tracksMsg.scenario!==activeScenario) return;
+  // Which satellites are up right now, so their tracks can be emphasised.
+  const up=new Set();
+  if(state&&state.scenario===activeScenario&&activeSite)
+    state.satellites.forEach(s=>{ if(s.sites[activeSite]&&s.sites[activeSite].visible)
+                                    up.add(s.name); });
   tracksMsg.tracks.forEach(t=>{
+    const vis=up.has(t.name);
     let seg=[], prev=null;
     const flush=()=>{ if(seg.length>1)
       g.appendChild(el("polyline",{class:"track",stroke:colorFor(t.layer),
+                                   opacity:vis?0.75:0.14,
+                                   "stroke-width":vis?1.1:0.7,
                                    points:seg.join(" ")})); seg=[]; };
     t.points.forEach(([lat,lon])=>{
       if(prev!==null && Math.abs(lon-prev)>180) flush();
@@ -279,6 +388,12 @@ function renderState(){
   gEl.className=dop.gdop==null?"":(dop.gdop<=6?"good":"bad");
   pEl.className=dop.pdop==null?"":(dop.pdop<=4?"good":"bad");
 
+  renderRequirements(dop);
+  pushHist(activeScenario+"|"+site, dop.gdop ?? null, Date.parse(state.updated_utc));
+  renderSpark(activeScenario+"|"+site);
+  renderSiteStrip();
+  renderParams();
+
   // table
   const vis=sats.filter(s=>s.sites[site]&&s.sites[site].visible)
                 .sort((a,b)=>b.sites[site].el_deg-a.sites[site].el_deg);
@@ -288,7 +403,7 @@ function renderState(){
     const td0=document.createElement("td");
     const sw=document.createElement("span");
     sw.className="swatch"; sw.style.background=colorFor(s.layer);
-    td0.appendChild(sw); td0.appendChild(document.createTextNode(shortName(s.name)));
+    td0.appendChild(sw); td0.appendChild(document.createTextNode(shortName(s.name, s.layer)));
     tr.appendChild(td0);
     [d.el_deg.toFixed(2),d.az_deg.toFixed(2),d.range_km.toFixed(0)].forEach(v=>{
       const td=document.createElement("td"); td.textContent=v; tr.appendChild(td);
@@ -298,6 +413,8 @@ function renderState(){
   const empty=document.getElementById("visempty");
   empty.style.display=vis.length?"none":"block";
   if(!vis.length) empty.textContent="no satellites above the "+mask+"\u00B0 mask";
+
+  renderTracks();
 
   // header + legend + footer
   document.getElementById("utc").textContent=state.updated_utc.slice(11,19)+"Z";
@@ -321,12 +438,129 @@ function renderState(){
        ? ` &middot; track window ${tracksMsg.window_hours} hr` : "") +
     (cov!==undefined
        ? `<br>study availability at this site: ${cov}%` : "") +
+    (meta.two_body
+       ? `<br><span class="note">Live propagation is two-body from Keplerian elements. ` +
+         `The source study used LP165P 20x20 gravity plus Earth/Sun third bodies, so ` +
+         `live geometry diverges from the study ephemerides over days.</span>` : "") +
     (meta.note?`<br><span class="note">${meta.note}</span>`:"");
 }
 
-function shortName(n){
-  const m=n.match(/PRN\s*\d+/); if(m) return n.trim();
-  return n.replace(/^OPT-[BD]_/,"").replace(/^[A-Z-]+\d*_/,"");
+function shortName(n, layer){
+  if(/PRN\s*\d+/.test(n)) return n.trim();          // GPS names are already clean
+  let out = n.replace(/^OPT-[BD]_/, "");             // drop the combined-config prefix
+  if(layer && out.startsWith(layer + "_")) out = out.slice(layer.length + 1);
+  return out;                                        // leaves e.g. "P3_S12"
+}
+
+
+// ---------- requirements, sparkline, site strip, parameters ----------
+const gdopHist = {};        // key: scenario|site -> [{t, gdop}]
+const HIST_MS = 15*60*1000; // keep 15 minutes
+
+function pushHist(key, gdop, tms){
+  const h = gdopHist[key] = gdopHist[key] || [];
+  h.push({t: tms, g: gdop});
+  const cut = tms - HIST_MS;
+  while(h.length && h[0].t < cut) h.shift();
+  return h;
+}
+
+function renderRequirements(dop){
+  const box=document.getElementById("reqs"); box.replaceChildren();
+  const r=(dop||{}).requirements;
+  if(!r){ box.innerHTML='<div class="empty">no geometry solution</div>'; return; }
+  const rows=[
+    ["Satellites visible", r.min_satellites, v=>`${v} / ${r.min_satellites.limit} min`],
+    ["GDOP",               r.gdop,           v=>`${v==null?"--":v} / ${r.gdop.limit} max`],
+    ["PDOP",               r.pdop,           v=>`${v==null?"--":v} / ${r.pdop.limit} max`],
+    ["Availability",       r.availability,   v=>`${v}% / ${r.availability.limit}% min`],
+  ];
+  rows.forEach(([label,req,fmt])=>{
+    const d=document.createElement("div"); d.className="req";
+    const a=document.createElement("span"); a.textContent=label;
+    const b=document.createElement("span");
+    b.className=req.pass?"pass":"fail";
+    b.textContent=(req.pass?"PASS  ":"FAIL  ")+fmt(req.value);
+    d.appendChild(a); d.appendChild(b); box.appendChild(d);
+  });
+  const d=document.createElement("div"); d.className="req";
+  d.innerHTML='<span>Position accuracy</span>'+
+              '<span style="color:var(--muted)">not evaluated - needs UERE model</span>';
+  box.appendChild(d);
+}
+
+function renderSpark(key){
+  const svg=document.getElementById("spark"); svg.replaceChildren();
+  const h=gdopHist[key]||[];
+  document.getElementById("sparkspan").textContent =
+    h.length>1 ? Math.round((h[h.length-1].t-h[0].t)/1000)+" s" : "--";
+  if(h.length<2) return;
+  const W=300,H=46,pad=3;
+  const vals=h.map(p=>p.g).filter(v=>v!=null);
+  if(!vals.length) return;
+  const ymax=Math.max(8, Math.min(30, Math.max(...vals)*1.15));
+  const x=i=>pad+(W-2*pad)*i/(h.length-1);
+  const y=v=>H-pad-(H-2*pad)*Math.min(v,ymax)/ymax;
+  // limit line at GDOP 6
+  svg.appendChild(el("line",{x1:0,y1:y(6),x2:W,y2:y(6),stroke:"var(--warn)",
+                             "stroke-width":.7,"stroke-dasharray":"3 3",opacity:.7}));
+  let d="", started=false;
+  h.forEach((p,i)=>{
+    if(p.g==null){ started=false; return; }
+    d += (started?" L":" M")+x(i).toFixed(1)+","+y(p.g).toFixed(1); started=true;
+  });
+  svg.appendChild(el("path",{d:d.trim(),fill:"none",stroke:"var(--accent)",
+                             "stroke-width":1.2}));
+}
+
+function renderSiteStrip(){
+  const tb=document.getElementById("sitestrip"); tb.replaceChildren();
+  if(!state) return;
+  state.sites.forEach(st=>{
+    const d=(state.dop||{})[st.name]||{};
+    const tr=document.createElement("tr");
+    if(st.name===activeSite) tr.className="active";
+    const cells=[st.name, d.n_visible ?? "-",
+                 d.gdop==null?"-":d.gdop.toFixed(2),
+                 d.availability_pct==null?"-":d.availability_pct.toFixed(1)+"%"];
+    cells.forEach((v,i)=>{
+      const td=document.createElement("td");
+      td.textContent=v;
+      if(i>0) td.style.textAlign="right";
+      if(i===2&&d.gdop!=null) td.className=d.gdop<=6?"pass":"fail";
+      tr.appendChild(td);
+    });
+    tr.style.cursor="pointer";
+    tr.addEventListener("click",()=>{
+      activeSite=st.name;
+      document.getElementById("site").value=st.name;
+      renderState();
+    });
+    tb.appendChild(tr);
+  });
+}
+
+function renderParams(){
+  const meta=catalog.find(c=>c.id===activeScenario)||{};
+  const box=document.getElementById("params");
+  const lp=meta.layer_params||[];
+  if(!lp.length){
+    box.innerHTML = meta.body==="Earth"
+      ? "Live TLE catalogue - elements vary per satellite and are refreshed from source."
+      : "&mdash;";
+    return;
+  }
+  box.innerHTML = lp.map(p=>
+    `<div><span class="swatch" style="background:${colorFor(p.layer)}"></span>` +
+    `<b>${p.layer}</b> &middot; ${p.n_sats} sats in ${p.n_planes} planes<br>` +
+    `&nbsp;&nbsp;a <b>${p.sma_km}</b> km &middot; e <b>${p.ecc}</b> &middot; ` +
+    `i <b>${p.inc_deg}</b>&deg; &middot; &omega; <b>${[].concat(p.aop_deg).join(", ")}</b>&deg;` +
+    ([].concat(p.aop_deg).length > 1 ? ` <span class="note">(split unverified)</span>` : "") + `<br>` +
+    `&nbsp;&nbsp;T <b>${p.period_hr}</b> hr &middot; alt <b>${p.peri_alt_km}</b> to ` +
+    `<b>${p.apo_alt_km}</b> km<br>` +
+    `&nbsp;&nbsp;RAAN ${p.raans_deg.join(", ")}&deg;</div>`
+  ).join("<div style='height:7px'></div>") +
+  (meta.epoch ? `<div style="margin-top:8px">epoch <b>${meta.epoch.replace("T"," ").slice(0,19)}Z</b></div>` : "");
 }
 
 // ---------- controls ----------

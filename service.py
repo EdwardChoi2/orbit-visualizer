@@ -28,6 +28,7 @@ Run:  uvicorn service:app --host 0.0.0.0 --port 8000
 
 import asyncio
 import math
+from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -47,6 +48,15 @@ PROPAGATION_INTERVAL_S = 2.0
 TRACK_INTERVAL_S = 300.0
 TRACK_STEPS = 60                      # samples across the whole track window
 
+# Rolling availability window. The study defines availability as the fraction of
+# epochs meeting BOTH ">= 4 visible" and "GDOP <= 6"; we accumulate the same
+# fraction live, over the last hour of service uptime.
+AVAIL_WINDOW_SAMPLES = int(3600 / PROPAGATION_INTERVAL_S)
+REQ_MIN_SATS = 4
+REQ_MAX_GDOP = 6.0
+REQ_MAX_PDOP = 4.0
+REQ_MIN_AVAIL_PCT = 95.0
+
 SCENARIOS = src_mod.build_scenarios()
 DEFAULT_SCENARIO = "gps"
 
@@ -54,6 +64,7 @@ DEFAULT_SCENARIO = "gps"
 _snapshots = {}
 _tracks = {}
 _clients = {}                         # WebSocket -> scenario_id
+_avail = defaultdict(lambda: deque(maxlen=AVAIL_WINDOW_SAMPLES))   # (scn, site) -> bools
 
 
 # ---------------- Propagation ----------------
@@ -180,6 +191,28 @@ def _compute_tracks(scn, when):
             "tracks": list(series.values())}
 
 
+def _record_availability(scn, snap):
+    """Accumulate the study's availability criterion over a rolling window."""
+    for site_name, d in snap["dop"].items():
+        ok = (d["n_visible"] >= REQ_MIN_SATS
+              and d["gdop"] is not None and d["gdop"] <= REQ_MAX_GDOP)
+        buf = _avail[(scn.id, site_name)]
+        buf.append(ok)
+        pct = 100.0 * sum(buf) / len(buf)
+        d["availability_pct"] = round(pct, 2)
+        d["availability_samples"] = len(buf)
+        d["requirements"] = {
+            "min_satellites": {"limit": REQ_MIN_SATS, "value": d["n_visible"],
+                               "pass": d["n_visible"] >= REQ_MIN_SATS},
+            "gdop":           {"limit": REQ_MAX_GDOP, "value": d["gdop"],
+                               "pass": d["gdop"] is not None and d["gdop"] <= REQ_MAX_GDOP},
+            "pdop":           {"limit": REQ_MAX_PDOP, "value": d["pdop"],
+                               "pass": d["pdop"] is not None and d["pdop"] <= REQ_MAX_PDOP},
+            "availability":   {"limit": REQ_MIN_AVAIL_PCT, "value": round(pct, 2),
+                               "pass": pct >= REQ_MIN_AVAIL_PCT},
+        }
+
+
 # ---------------- Broadcast ----------------
 async def _broadcast(scenario_id, message):
     dead = []
@@ -202,6 +235,7 @@ async def _fast_loop(scn):
             if scn.source.is_ready():
                 snap = await asyncio.to_thread(_propagate, scn,
                                                datetime.now(timezone.utc))
+                _record_availability(scn, snap)
                 _snapshots[scn.id] = snap
                 await _broadcast(scn.id, snap)
         except Exception as ex:
@@ -272,6 +306,10 @@ def _catalog():
             "verified": getattr(s, "verified", True),
             "note": getattr(s, "note", ""),
             "layers": s.layers(),
+            "layer_params": s.layer_params(),
+            "epoch": getattr(s, "epoch", None).isoformat()
+                     if getattr(s, "epoch", None) else None,
+            "two_body": s.__class__.__name__ == "KeplerSource",
             "coverage": scn.coverage,
             "sites": _site_payload(scn),
             "ready": s.is_ready(),

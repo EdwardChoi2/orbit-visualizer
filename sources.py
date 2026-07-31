@@ -78,6 +78,9 @@ class Source:
     def layers(self):
         return []
 
+    def layer_params(self):
+        return []
+
 
 # ---------------- Earth: TLE + SGP4 ----------------
 class TLESource(Source):
@@ -207,6 +210,29 @@ class KeplerSource(Source):
 
     def layers(self):
         return list(self._layers)
+
+    def layer_params(self):
+        """Design parameters per layer, for display: shape, period, altitudes."""
+        mu, R = self.body.mu_km3_s2, self.body.radius_km
+        out = []
+        for L in self._layers:
+            sats = [s for s in self._sats if s["layer"] == L]
+            s0 = sats[0]
+            a, e = s0["a"], s0["e"]
+            out.append({
+                "layer": L,
+                "n_sats": len(sats),
+                "n_planes": len(set(s["plane"] for s in sats if s["plane"])),
+                "sma_km": a,
+                "ecc": e,
+                "inc_deg": s0["i"],
+                "aop_deg": sorted(set(s["aop"] for s in sats)),
+                "period_hr": round(2 * math.pi * math.sqrt(a ** 3 / mu) / 3600.0, 3),
+                "peri_alt_km": round(a * (1 - e) - R, 1),
+                "apo_alt_km": round(a * (1 + e) - R, 1),
+                "raans_deg": sorted(set(s["raan"] for s in sats)),
+            })
+        return out
 
     @property
     def epoch(self):
