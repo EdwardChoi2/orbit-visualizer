@@ -192,10 +192,15 @@ def _compute_tracks(scn, when):
 
 
 def _record_availability(scn, snap):
-    """Accumulate the study's availability criterion over a rolling window."""
+    """Accumulate 4-satellite availability over a rolling window.
+
+    The study defines availability as the fraction of epochs with >= 4
+    satellites visible above the mask -- nothing more. GDOP and PDOP are
+    separate requirements with their own limits, tracked independently.
+    Folding them together over-constrains the metric and under-reports.
+    """
     for site_name, d in snap["dop"].items():
-        ok = (d["n_visible"] >= REQ_MIN_SATS
-              and d["gdop"] is not None and d["gdop"] <= REQ_MAX_GDOP)
+        ok = d["n_visible"] >= REQ_MIN_SATS
         buf = _avail[(scn.id, site_name)]
         buf.append(ok)
         pct = 100.0 * sum(buf) / len(buf)

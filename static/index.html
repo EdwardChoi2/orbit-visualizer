@@ -473,7 +473,7 @@ function renderRequirements(dop){
     ["Satellites visible", r.min_satellites, v=>`${v} / ${r.min_satellites.limit} min`],
     ["GDOP",               r.gdop,           v=>`${v==null?"--":v} / ${r.gdop.limit} max`],
     ["PDOP",               r.pdop,           v=>`${v==null?"--":v} / ${r.pdop.limit} max`],
-    ["Availability",       r.availability,   v=>`${v}% / ${r.availability.limit}% min`],
+    ["Availability (4-sat)", r.availability, v=>`${v}% / ${r.availability.limit}% min`],
   ];
   rows.forEach(([label,req,fmt])=>{
     const d=document.createElement("div"); d.className="req";
