@@ -54,6 +54,13 @@
   .sitestrip td,.sitestrip th{padding:2px 4px;font-size:11px}
   .sitestrip tr.active{background:#16202c}
   .params{font-size:11px;color:var(--muted);line-height:1.7}
+  .sweeptbl{width:100%;border-collapse:collapse;font-size:11px}
+  .sweeptbl th{font-size:9px;padding:2px 3px}
+  .sweeptbl td{padding:3px;border-bottom:1px solid #161d27}
+  .sweeptbl tr.active{background:#16202c}
+  .dayrow{display:flex;gap:1px;margin-top:3px}
+  .daycell{flex:1;height:13px;border-radius:1px}
+  .sweepnote{color:var(--muted);font-size:10px;margin-top:7px;line-height:1.5}
   .params b{color:var(--text);font-weight:600}
   .frame{stroke:var(--line);stroke-width:1;fill:none}
   .track{fill:none;stroke-width:.8;opacity:.45}
@@ -151,6 +158,11 @@
         <th style="text-align:right">GDOP</th><th style="text-align:right">Avail</th></tr></thead>
         <tbody id="sitestrip"></tbody>
       </table>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h2>28-day sweep &middot; study-comparable</h2>
+      <div id="sweep"><div class="empty">not computed for this scenario</div></div>
     </div>
 
     <div class="panel" style="margin-top:14px">
@@ -393,6 +405,7 @@ function renderState(){
   renderSpark(activeScenario+"|"+site);
   renderSiteStrip();
   renderParams();
+  renderSweep();
 
   // table
   const vis=sats.filter(s=>s.sites[site]&&s.sites[site].visible)
@@ -473,7 +486,7 @@ function renderRequirements(dop){
     ["Satellites visible", r.min_satellites, v=>`${v} / ${r.min_satellites.limit} min`],
     ["GDOP",               r.gdop,           v=>`${v==null?"--":v} / ${r.gdop.limit} max`],
     ["PDOP",               r.pdop,           v=>`${v==null?"--":v} / ${r.pdop.limit} max`],
-    ["Availability (4-sat)", r.availability, v=>`${v}% / ${r.availability.limit}% min`],
+    ["Availability",       r.availability,   v=>`${v}% / ${r.availability.limit}% min`],
   ];
   rows.forEach(([label,req,fmt])=>{
     const d=document.createElement("div"); d.className="req";
@@ -554,13 +567,74 @@ function renderParams(){
     `<div><span class="swatch" style="background:${colorFor(p.layer)}"></span>` +
     `<b>${p.layer}</b> &middot; ${p.n_sats} sats in ${p.n_planes} planes<br>` +
     `&nbsp;&nbsp;a <b>${p.sma_km}</b> km &middot; e <b>${p.ecc}</b> &middot; ` +
-    `i <b>${p.inc_deg}</b>&deg; &middot; &omega; <b>${[].concat(p.aop_deg).join(", ")}</b>&deg;` +
-    ([].concat(p.aop_deg).length > 1 ? ` <span class="note">(split unverified)</span>` : "") + `<br>` +
+    `i <b>${p.inc_deg}</b>&deg; &middot; &omega; <b>${p.aop_deg}</b>&deg;<br>` +
     `&nbsp;&nbsp;T <b>${p.period_hr}</b> hr &middot; alt <b>${p.peri_alt_km}</b> to ` +
     `<b>${p.apo_alt_km}</b> km<br>` +
     `&nbsp;&nbsp;RAAN ${p.raans_deg.join(", ")}&deg;</div>`
   ).join("<div style='height:7px'></div>") +
   (meta.epoch ? `<div style="margin-top:8px">epoch <b>${meta.epoch.replace("T"," ").slice(0,19)}Z</b></div>` : "");
+}
+
+
+// ---------- 28-day sweep ----------
+const sweeps = {};        // scenario id -> analysis message
+
+function availColor(p){
+  if(p===null||p===undefined) return "#1e2836";
+  // red below 50, amber to 95, green at/above the 95% requirement
+  if(p>=95) return "#2ea043";
+  if(p>=50) return "#9e6a03";
+  return "#8b2c2c";
+}
+
+function renderSweep(){
+  const box=document.getElementById("sweep");
+  const a=sweeps[activeScenario];
+  const meta=catalog.find(c=>c.id===activeScenario)||{};
+  if(!a){
+    box.innerHTML = meta.two_body
+      ? '<div class="empty">sweep running&hellip;</div>'
+      : '<div class="empty">not computed &mdash; SGP4 is not valid over 28 days</div>';
+    return;
+  }
+  const doc=meta.coverage||{};
+  let html='<table class="sweeptbl"><thead><tr><th>Site</th>'+
+           '<th style="text-align:right">28-day</th>'+
+           '<th style="text-align:right">Study</th>'+
+           '<th style="text-align:right">&Delta;</th>'+
+           '<th style="text-align:right">GDOP</th>'+
+           '<th style="text-align:right">Outage</th></tr></thead><tbody>';
+  Object.entries(a.sites).forEach(([name,v])=>{
+    const d=doc[name];
+    const delta=(d===undefined)?null:(v.availability_pct-d);
+    const dcls=delta===null?"":(Math.abs(delta)<=3?"pass":"fail");
+    html+=`<tr class="${name===activeSite?'active':''}">`+
+      `<td>${name}</td>`+
+      `<td style="text-align:right" class="${v.availability_pct>=95?'pass':'fail'}">`+
+        `${v.availability_pct.toFixed(1)}%</td>`+
+      `<td style="text-align:right;color:var(--muted)">${d===undefined?"--":d.toFixed(1)+"%"}</td>`+
+      `<td style="text-align:right" class="${dcls}">`+
+        `${delta===null?"--":(delta>0?"+":"")+delta.toFixed(1)}</td>`+
+      `<td style="text-align:right">${v.median_gdop===null?"--":v.median_gdop}</td>`+
+      `<td style="text-align:right">${v.max_outage_hr.toFixed(1)}h</td></tr>`;
+  });
+  html+='</tbody></table>';
+
+  // per-day strip: this is where the ~27.3-day beat cycle becomes visible
+  Object.entries(a.sites).forEach(([name,v])=>{
+    html+=`<div style="margin-top:9px;color:var(--muted);font-size:10px">${name}</div>`;
+    html+='<div class="dayrow">'+
+      v.per_day_pct.map((p,i)=>
+        `<div class="daycell" style="background:${availColor(p)}" `+
+        `title="day ${i+1}: ${p===null?'--':p+'%'}"></div>`).join("")+
+      '</div>';
+  });
+  html+=`<div class="sweepnote">Day 1 to ${a.duration_days} from epoch `+
+        `${a.epoch_utc.slice(0,10)}, ${a.step_s} s step, criterion ${a.criterion}. `+
+        `Green &ge;95%, amber 50-95%, red &lt;50%. `+
+        `The live figure above is a 1-hour window and moves with the ~27.3-day `+
+        `lunar rotation; this sweep is the study-comparable number.</div>`;
+  box.innerHTML=html;
 }
 
 // ---------- controls ----------
@@ -601,6 +675,7 @@ document.getElementById("scenario").addEventListener("change",e=>{
   document.getElementById("tracks").replaceChildren();
   document.getElementById("sats").replaceChildren();
   document.getElementById("skysats").replaceChildren();
+  renderSweep();
   const meta=catalog.find(c=>c.id===activeScenario);
   if(meta) setBodyChrome(meta.body);
   buildSiteSelect();
@@ -631,6 +706,8 @@ function connect(){
     }
     if(m.type==="state"  && m.scenario===activeScenario){ state=m; renderState(); }
     if(m.type==="tracks" && m.scenario===activeScenario){ tracksMsg=m; renderTracks(); }
+    if(m.type==="analysis"){ sweeps[m.scenario]=m;
+                             if(m.scenario===activeScenario) renderSweep(); }
   };
   ws.onclose=()=>{
     const l=document.getElementById("link"); l.textContent="down"; l.classList.remove("up");
