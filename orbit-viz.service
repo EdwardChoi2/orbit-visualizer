@@ -1,0 +1,69 @@
+[Unit]
+# Human-readable name shown by `systemctl status`.
+Description=Orbit Visualiser - constellation propagation and visibility service
+Documentation=https://github.com/EdwardChoi2/orbit-visualizer
+
+# Ordering, not a hard dependency. The service starts after the network stack is
+# up, but does NOT fail if the network is down at boot: the propagation loops run
+# from local element sets, and the GPS TLE fetch retries on its own schedule.
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+
+# Least privilege: this needs no root. It binds port 8000 (above 1024, so no
+# capability required), reads its own data files, and writes nothing to disk.
+User=echoi
+Group=echoi
+
+WorkingDirectory=/home/echoi/orbit-viz
+
+# Call the venv's uvicorn by absolute path. systemd does not run a login shell,
+# so there is no `source activate` step and no inherited PATH to rely on.
+ExecStart=/home/echoi/orbit-viz/.venv/bin/uvicorn service:app --host 0.0.0.0 --port 8000
+
+# Unbuffered stdout so log lines reach journald as they happen rather than
+# sitting in a 4 KB buffer.
+Environment=PYTHONUNBUFFERED=1
+
+# Restart on any exit, including a clean one. For an always-on service there is
+# no such thing as a legitimate exit.
+Restart=always
+RestartSec=5
+
+# If it crashes 5 times in 60 s, stop trying. Without this a hard failure (bad
+# config, syntax error) becomes an infinite crash loop that pins the CPU.
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+# Give the propagation loops time to cancel cleanly via the FastAPI lifespan
+# hook before SIGKILL.
+TimeoutStopSec=20
+
+# Logs go to journald, which handles its own rotation and size caps. Writing our
+# own log file would risk quietly filling the microSD on a service that runs for
+# months.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=orbit-viz
+
+# --- Hardening ---
+# This process listens on the LAN continuously, so restrict what it can touch.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+# ProtectSystem=strict makes everything read-only, so the two paths that DO need
+# writes are granted back explicitly:
+#   ~/orbit-viz  - Skyfield caches downloaded TLEs next to the project
+#   ~/.cache     - Python bytecode and general cache
+ReadWritePaths=/home/echoi/orbit-viz /home/echoi/.cache
+
+[Install]
+# Start at boot, at the normal multi-user (non-graphical) runlevel.
+WantedBy=multi-user.target

@@ -567,7 +567,8 @@ function renderParams(){
     `<div><span class="swatch" style="background:${colorFor(p.layer)}"></span>` +
     `<b>${p.layer}</b> &middot; ${p.n_sats} sats in ${p.n_planes} planes<br>` +
     `&nbsp;&nbsp;a <b>${p.sma_km}</b> km &middot; e <b>${p.ecc}</b> &middot; ` +
-    `i <b>${p.inc_deg}</b>&deg; &middot; &omega; <b>${p.aop_deg}</b>&deg;<br>` +
+    `i <b>${p.inc_deg}</b>&deg; &middot; &omega; <b>${[].concat(p.aop_deg).join(", ")}</b>&deg;` +
+    ([].concat(p.aop_deg).length > 1 ? ` <span class="note">(split unverified)</span>` : "") + `<br>` +
     `&nbsp;&nbsp;T <b>${p.period_hr}</b> hr &middot; alt <b>${p.peri_alt_km}</b> to ` +
     `<b>${p.apo_alt_km}</b> km<br>` +
     `&nbsp;&nbsp;RAAN ${p.raans_deg.join(", ")}&deg;</div>`
